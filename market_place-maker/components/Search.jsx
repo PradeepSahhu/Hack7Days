@@ -1,27 +1,27 @@
 export default function Search() {
   return (
-    <div class="bg-black text-white">
-      <nav class="bg-black text-white shadow-lg">
-        <div class=" mx-auto px-4">
-          <div class="flex justify-between">
-            <div class="flex space-x-7">
+    <div className="bg-black text-white">
+      <nav className="bg-black text-white shadow-lg">
+        <div className=" mx-auto px-4">
+          <div className="flex justify-between">
+            <div className="flex space-x-7">
               <div>
-                <a href="#" class="flex items-center py-4 px-2">
-                  <span class="font-semibold text-white text-lg">NFT</span>
+                <a href="#" className="flex items-center py-4 px-2">
+                  <span className="font-semibold text-white text-lg">NFT</span>
                 </a>
               </div>
-              <div class="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center space-x-1">
                 <a
                   href="#"
-                  class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300"
+                  className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300"
                 >
                   0x161aBA4657174De9a36C3Ee71bC8163118d88d43
                 </a>
-                <div class="relative group">
-                  <button class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
+                <div className="relative group">
+                  <button className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
                     Services
                   </button>
-                  <div class="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5">
+                  <div className="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5">
                     <div className="inline-block w-1/2">
                       <div className="mb-6">
                         <p className="text-gray-700 text-start text-md">
@@ -38,7 +38,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 1
                         </a>
@@ -52,7 +52,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 2
                         </a>
@@ -65,7 +65,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 3
                         </a>
@@ -87,7 +87,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 1
                         </a>
@@ -101,7 +101,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 2
                         </a>
@@ -114,7 +114,7 @@ export default function Search() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 3
                         </a>
@@ -124,13 +124,13 @@ export default function Search() {
                 </div>
                 <a
                   href="#"
-                  class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
+                  className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
                 >
                   About
                 </a>
                 <a
                   href="#"
-                  class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
+                  className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
                 >
                   Contact
                 </a>

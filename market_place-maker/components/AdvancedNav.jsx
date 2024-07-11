@@ -12,7 +12,7 @@ export default function AdvancedNav() {
                     alt="Logo"
                     className="h-8 w-8 mr-2 rounded-3xl fill-[#1679AB]"
                   />
-                  <span class="font-semibold text-yellow-400 text-lg">
+                  <span className="font-semibold text-yellow-400 text-lg">
                     Marketplace Maker
                   </span>
                 </a>
@@ -28,7 +28,7 @@ export default function AdvancedNav() {
                   <button className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
                     Services
                   </button>
-                  <div class="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5 z-10">
+                  <div className="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5 z-10">
                     <div className="inline-block w-1/2">
                       <div className="mb-6">
                         <p className="text-gray-700 text-start text-md">
@@ -45,7 +45,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 1
                         </a>
