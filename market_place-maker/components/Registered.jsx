@@ -6,8 +6,10 @@ export default function Registered() {
       </div>
       <p className="text-white font-bold mr-2">1</p>
       <div>
-        <p className="text-yellow-400 font-bold">Advanterous Cyber Punk</p>
-        <p className="text-gray-600 font-extralight">
+        <p className="text-yellow-400 font-bold text-xl">
+          Advanterous Cyber Punk
+        </p>
+        <p className="text-gray-600 font-extralight text-sm">
           0x161aBA4657174De9a36C3Ee71bC8163118d88d43
         </p>
       </div>

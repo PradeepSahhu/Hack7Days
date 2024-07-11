@@ -59,26 +59,39 @@ export default function Home() {
           </div>
           <div className="flex justify-between gap-x-3"></div>
 
-          <div className="flex justify-between">
+          {/* <div className="flex justify-between">
             <p className="text-sm text-gray-400">Addresses</p>
             <p className="">Nft Available</p>
+          </div> */}
+
+          <div className="my-4 grid-cols-3">
+            <div className="">
+              <p className="h-8 w-8 mr-1">Deployed MarketPlace</p>
+            </div>
+
+            <div>
+              <p className="text-yellow-400 font-bold text-xl">Addresses</p>
+              <p className="text-gray-600 font-extralight text-sm">
+                NFT Available
+              </p>
+            </div>
           </div>
 
-          <div className="flex justify-between">
-            <div className="flex justify-between gap-x-5 grid-cols-3">
+          <div className="flex justify-between ">
+            <div className="flex justify-between gap-x-5 grid-cols-3 border-gray-600 border-2 px-3 py-4">
               <div>
                 <Registered />
                 <Registered />
                 <Registered />
               </div>
             </div>
-            <div className="flex justify-between gap-x-5 grid-cols-3">
+            {/* <div className="flex justify-between gap-x-5 grid-cols-3">
               <div>
                 <Registered />
                 <Registered />
                 <Registered />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
