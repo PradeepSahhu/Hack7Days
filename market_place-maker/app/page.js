@@ -6,6 +6,7 @@ import NextNav from "@/components/NextNav";
 import Item from "@/components/Item";
 import Search from "@/components/Search";
 import Registered from "@/components/Registered";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -25,10 +26,13 @@ export default function Home() {
             Come and Make Your Own MarketPlace
           </div>
           <div className="flex justify-between">
-            <button className="bg-yellow-400 mt-2 px-5 pt-3 pb-2.5 rounded-xl hover:bg-yellow-800">
+            <Link
+              className="bg-yellow-400 mt-2 px-5 pt-3 pb-2.5 rounded-xl hover:bg-yellow-800"
+              href="./NewMarketPlace"
+            >
               Get Started
               <img src="./arrow.png" className="h-8 w-8 inline-block ml-3" />
-            </button>
+            </Link>
           </div>
           <div className="text-[3rem] mt-16 flex justify-center font-bold text-yellow-400">
             <p>Our NFT Collections</p>
@@ -63,11 +67,14 @@ export default function Home() {
               Trending
             </p>
             <div className="flex space-x-4">
-              <button className="bg-gray-400  px-2 pt-1 pb-1 rounded-xl hover:bg-yellow-800 justify-end flex">
+              <p className="text-white px-2 pt-1 pb-1 rounded-xl hover:bg-yellow-800 justify-end flex underline underline-offset-8 decoration-yellow-400">
+                Top
+              </p>
+              <button className="bg-yellow-400  px-2 pt-1 pb-1 rounded-xl hover:bg-yellow-800 justify-end flex">
                 12hr
               </button>
-              <button className="bg-gray-400  px-2 pt-1 pb-1 rounded-xl hover:bg-yellow-800 justify-end flex">
-                12hr
+              <button className="bg-yellow-400  px-2 pt-1 pb-1 rounded-xl hover:bg-yellow-800 justify-end flex">
+                24hr
               </button>
             </div>
           </div>
