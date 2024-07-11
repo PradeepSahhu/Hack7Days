@@ -1,4 +1,4 @@
-export default function AdvancedNav() {
+export default function Search() {
   return (
     <div class="bg-black text-white">
       <nav class="bg-black text-white shadow-lg">
@@ -7,14 +7,7 @@ export default function AdvancedNav() {
             <div class="flex space-x-7">
               <div>
                 <a href="#" class="flex items-center py-4 px-2">
-                  <img
-                    src="./block-.png"
-                    alt="Logo"
-                    className="h-8 w-8 mr-2 rounded-3xl fill-[#1679AB]"
-                  />
-                  <span class="font-semibold text-yellow-400 text-lg">
-                    Marketplace Maker
-                  </span>
+                  <span class="font-semibold text-white text-lg">NFT</span>
                 </a>
               </div>
               <div class="hidden md:flex items-center space-x-1">
@@ -22,13 +15,13 @@ export default function AdvancedNav() {
                   href="#"
                   class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300"
                 >
-                  Home
+                  0x161aBA4657174De9a36C3Ee71bC8163118d88d43
                 </a>
                 <div class="relative group">
                   <button class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
                     Services
                   </button>
-                  <div class="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5 z-10">
+                  <div class="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5">
                     <div className="inline-block w-1/2">
                       <div className="mb-6">
                         <p className="text-gray-700 text-start text-md">
@@ -169,7 +162,6 @@ export default function AdvancedNav() {
           </div>
         </div>
       </nav>
-      <hr className="col-start-1 col-end-4 w-full h-0.5 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
     </div>
   );
 }
