@@ -17,15 +17,16 @@ export default function Home() {
       </div>
       <div className="absolute  w-10/12 inset-32 h-3/4">
         <div className="">
-          <div className="text-white text-[3rem] font-extrabold mt-32">
+          <div className="text-white text-[3rem] font-extrabold mt-28">
             One Place for all Your NFT Needs
           </div>
           <div className="text-white font-extralight text-[2rem]">
             Come and Join Now
           </div>
-          <div>
-            <button className="bg-yellow-400 mt-2 px-5 pt-3 pb-2.5 rounded-xl">
+          <div className="flex justify-between">
+            <button className="bg-yellow-400 mt-2 px-5 pt-3 pb-2.5 rounded-xl hover:bg-yellow-800">
               Get Started
+              <img src="./arrow.png" className="h-8 w-8 inline-block ml-3" />
             </button>
           </div>
           <div className="mt-24 gap-x-5 grid grid-cols-4">
@@ -44,6 +45,8 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <div className="bg-white w-full h-full"></div>
     </div>
   );
 }

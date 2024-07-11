@@ -145,7 +145,7 @@ export default function AdvancedNav() {
             </div>
             <div className="items-center flex">
               <div className="flex justify-center ">
-                <input className="  text-[16px] rounded-sm px-1 py-0.5 border-1 text-black w-96 border-yellow-400 bg-transparent border-2" />
+                <input className="  text-[16px] rounded-sm px-1 py-0.5 border-1 w-96 border-yellow-400 bg-transparent border-2 placeholder:Search text-gray-600 focus:border-yellow-400" />
               </div>
             </div>
 

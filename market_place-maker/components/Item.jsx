@@ -4,7 +4,7 @@ export default function Item({ itemSrc }) {
       <div className="absolute bg-gradient-to-r from-yellow-400 to-red-600 blur-sm -inset-0.5 opacity-75 group-hover:opacity-100 transition duration-200 group-hover:blur-md"></div>
       <div className="rounded-lg bg-white shadow-secondary-1">
         <div
-          className="relative overflow-hidden bg-cover bg-no-repeat w-50 h-30"
+          className="relative overflow-hidden bg-cover bg-no-repeat w-50 h-25"
           data-twe-ripple-init
           data-twe-ripple-color="light"
         >
