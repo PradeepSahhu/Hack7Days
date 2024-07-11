@@ -1,12 +1,12 @@
 export default function AdvancedNav() {
   return (
-    <div class="bg-black text-white">
-      <nav class="bg-black text-white shadow-lg">
-        <div class=" mx-auto px-4">
-          <div class="flex justify-between">
-            <div class="flex space-x-7">
+    <div className="bg-black text-white">
+      <nav className="bg-black text-white shadow-lg">
+        <div className=" mx-auto px-4">
+          <div className="flex justify-between">
+            <div className="flex space-x-7">
               <div>
-                <a href="#" class="flex items-center py-4 px-2">
+                <a href="#" className="flex items-center py-4 px-2">
                   <img
                     src="./block-.png"
                     alt="Logo"
@@ -17,15 +17,15 @@ export default function AdvancedNav() {
                   </span>
                 </a>
               </div>
-              <div class="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center space-x-1">
                 <a
                   href="#"
                   class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300"
                 >
                   Home
                 </a>
-                <div class="relative group">
-                  <button class="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
+                <div className="relative group">
+                  <button className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
                     Services
                   </button>
                   <div class="absolute hidden  bg-black shadow-lg w-[30rem] group-hover:flex group-hover:justify-between -left-52 gap-x-5 z-10">
@@ -59,7 +59,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 2
                         </a>
@@ -72,7 +72,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 3
                         </a>
@@ -94,7 +94,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 1
                         </a>
@@ -108,7 +108,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 2
                         </a>
@@ -121,7 +121,7 @@ export default function AdvancedNav() {
                         />
                         <a
                           href="#"
-                          class="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
+                          className="block px-1 py-2 text-white hover:bg-gray-100 w-11/12 text-sm"
                         >
                           Service 3
                         </a>
@@ -131,13 +131,13 @@ export default function AdvancedNav() {
                 </div>
                 <a
                   href="#"
-                  class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
+                  className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
                 >
                   About
                 </a>
                 <a
                   href="#"
-                  class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
+                  className="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300"
                 >
                   Contact
                 </a>
@@ -145,7 +145,10 @@ export default function AdvancedNav() {
             </div>
             <div className="items-center flex">
               <div className="flex justify-center ">
-                <input className="  text-[16px] rounded-sm px-1 py-0.5 border-1 w-96 border-yellow-400 bg-transparent border-2 placeholder:Search text-gray-600 focus:border-yellow-400" />
+                <input
+                  className="  text-[16px] rounded-sm px-1 py-0.5 border-1 w-96 border-yellow-400 bg-transparent border-2  text-gray-400 focus:border-yellow-400 focus:text-red-600"
+                  placeholder="Search"
+                />
               </div>
             </div>
 
