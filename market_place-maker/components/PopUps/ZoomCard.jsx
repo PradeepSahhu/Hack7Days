@@ -31,7 +31,7 @@ export default function ZoomCard({
           onClick={() => setShowZoomCard(true)}
         >
           {/* //w-96 */}
-          <div className="absolute bg-gradient-to-r from-pink-600 via-yellow-400 to-purple-600 blur-md -inset-0.5 opacity-75 group-hover:opacity-100 transition duration-200 group-hover:blur-xl "></div>
+          <div className="absolute bg-gradient-to-r from-pink-600 via-yellow-400 to-purple-600 blur-sm -inset-0.5 opacity-75 group-hover:opacity-100 transition duration-200 group-hover:blur-xl "></div>
           <div className=" relative rounded-lg bg-black shadow-secondary-1">
             <div
               className="relative overflow-hidden bg-cover bg-no-repeat w-full h-80"
