@@ -7,6 +7,7 @@ import Item from "@/components/Item";
 import Search from "@/components/Search";
 import Registered from "@/components/Registered";
 import Link from "next/link";
+import Animation from "@/components/Animation";
 
 export default function Home() {
   return (
@@ -104,13 +105,15 @@ export default function Home() {
                 <Registered />
               </div>
             </div>
-            {/* <div className="flex justify-between gap-x-5 grid-cols-3">
-              <div>
-                <Registered />
-                <Registered />
-                <Registered />
-              </div>
-            </div> */}
+            <div className="flex justify-between gap-x-5 grid-cols-3">
+              <Animation
+                url={
+                  "https://lottie.host/b9e28391-16cf-4d8e-b592-5fd491f8398b/wCECNiQKUn.json"
+                }
+                width={400}
+                height={400}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import AdvancedNav from "@/components/AdvancedNav";
 import Search from "@/components/Search";
 import Animation from "@/components/Animation";
-
+import BlankCard from "@/components/BlankCard";
+import Popup from "@/components/Popup";
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
@@ -16,6 +17,13 @@ export default function Home({ params }) {
   const [boughtNFT, setBoughtNFT] = useState([]);
   const [accounts, setAccounts] = useState(null);
   const [bal, setBal] = useState();
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handlePopUp = () => {
+    setShowPopup(true);
+    console.log(showPopup);
+  };
+
   useEffect(() => {
     console.log(params.Marketplace);
   });
@@ -158,6 +166,17 @@ export default function Home({ params }) {
             ;
           </div>
         )}
+
+        <div className="mt-10 col-start-1 col-end-4 bg-opacity-90 p-10 justify-center space-x-8 space-y-5">
+          <div className="text-2xl bolder flex justify-center mb-10 ">
+            <p className="bg-gradient-to-r from-red-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent px-10 text-5xl">
+              NFTs To Buy
+            </p>
+          </div>
+
+          <BlankCard handlePopUp={handlePopUp} />
+          {showPopup && <Popup setShowPopup={setShowPopup} />}
+        </div>
       </div>
     </div>
   );
