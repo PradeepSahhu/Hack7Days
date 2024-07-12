@@ -2,12 +2,12 @@
 
 import { useEffect } from "react";
 
-export default function BlankCard({ handlePopUp }) {
+export default function BlankCard({ setShowHomePopUp }) {
   useEffect(() => {
-    console.log(handlePopUp);
+    console.log(setShowHomePopUp);
   });
   return (
-    <div className="inline-block w-60" onClick={handlePopUp}>
+    <div className="inline-block w-60" onClick={() => setShowHomePopUp(true)}>
       <h5 className="mb-2 text-2xl flex justify-center font-medium leading-tight bg-gradient-to-r from-green-500 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
         Add an NFT
       </h5>
@@ -20,7 +20,7 @@ export default function BlankCard({ handlePopUp }) {
           <img
             className="w-full h-full object-cover rounded-t-lg"
             src="./plus.png"
-            onClick={handlePopUp}
+            onClick={() => setShowHomePopUp(true)}
           />
           <a href="#!">
             <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsla(0,0%,98%,0.15)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>

@@ -4,7 +4,8 @@ import AdvancedNav from "@/components/AdvancedNav";
 import Search from "@/components/Search";
 import Animation from "@/components/Animation";
 import BlankCard from "@/components/BlankCard";
-import Popup from "@/components/Popup";
+import HomePopup from "@/components/HomePopup";
+import UploadLinkPopUp from "@/components/UploadLinkPopUp";
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
@@ -17,12 +18,8 @@ export default function Home({ params }) {
   const [boughtNFT, setBoughtNFT] = useState([]);
   const [accounts, setAccounts] = useState(null);
   const [bal, setBal] = useState();
-  const [showPopup, setShowPopup] = useState(false);
-
-  const handlePopUp = () => {
-    setShowPopup(true);
-    console.log(showPopup);
-  };
+  const [showHomePopUp, setShowHomePopUp] = useState(true);
+  const [showUploadLink, setShowUploadLink] = useState(false);
 
   useEffect(() => {
     console.log(params.Marketplace);
@@ -174,8 +171,14 @@ export default function Home({ params }) {
             </p>
           </div>
 
-          <BlankCard handlePopUp={handlePopUp} />
-          {showPopup && <Popup setShowPopup={setShowPopup} />}
+          <BlankCard setShowHomePopUp={setShowHomePopUp} />
+          {showHomePopUp && (
+            <HomePopup
+              setShowHomePopUp={setShowHomePopUp}
+              setShowUploadLink={setShowUploadLink}
+            />
+          )}
+          {showUploadLink && <UploadLinkPopUp />}
         </div>
       </div>
     </div>
