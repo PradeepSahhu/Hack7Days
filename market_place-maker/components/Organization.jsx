@@ -11,26 +11,26 @@ export default function Organization() {
           Enter the NFT Marketplace Name
         </label>
         <input
-          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent"
+          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent focus:border-yellow-400 focus:text-white focus:outline-none"
           placeholder=""
           name="TokenAmount"
         />
 
         <label className="grid col-start-1 col-end-1 ">Enter the Info</label>
         <input
-          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent"
+          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent focus:border-yellow-400 focus:text-white focus:outline-none"
           placeholder=""
           name="TokenAmount"
         />
         <label className="grid col-start-1 col-end-1 ">Enter the Genere</label>
         <input
-          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent"
+          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent focus:border-yellow-400 focus:text-white focus:outline-none"
           placeholder=""
           name="TokenAmount"
         />
         <label className="grid col-start-1 col-end-1 ">Choose Date</label>
         <input
-          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent"
+          className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent focus:border-yellow-400 focus:text-white focus:outline-none"
           placeholder=""
           type="date"
           name="TokenAmount"

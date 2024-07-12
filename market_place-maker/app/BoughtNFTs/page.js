@@ -2,8 +2,13 @@
 import { useEffect, useState } from "react";
 import AdvancedNav from "@/components/AdvancedNav";
 import Search from "@/components/Search";
+import Card from "@/components/Cards/Card";
+import BoughtCard from "@/components/Cards/BoughtCard";
+import ZoomCard from "@/components/PopUps/ZoomCard";
 
-export default function BoughtNFT() {
+export default function BoughtNFT({ NFTsArray }) {
+  const [showZoomCard, setShowZoomCard] = useState(false);
+
   return (
     <div className="bg-black font-myFont">
       <div className="bg-transparent inset-0 z-0">
@@ -13,9 +18,25 @@ export default function BoughtNFT() {
         <AdvancedNav />
         <Search />
       </div>
-      <div className="absolute inset-20 mt-20 rounded-xl bg-gray-800">
-        <div className=" relative  h-9/12 rounded-xl mx-10 mt-10 flex justify-between"></div>
+      {/* <div className="absolute inset-20 mt-20 rounded-xl bg-gray-800">
+        <div className=" relative  h-9/12 rounded-xl mx-10 mt-10 flex gap-x-5"> */}
+      <div className="absolute inset-0 mt-24 col-start-1 col-end-4 bg-opacity-90 p-10 justify-center space-x-8 space-y-5">
+        <div className="text-2xl bolder flex justify-center mb-5 ">
+          <p className="bg-yellow-400 to-indigo-600 bg-clip-text text-transparent px-10 text-5xl font-bold">
+            Your NFTs
+          </p>
+        </div>
+
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} />
       </div>
+      {showZoomCard && <ZoomCard setShowZoomCard={setShowZoomCard} />}
     </div>
   );
 }
