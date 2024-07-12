@@ -7,6 +7,7 @@ import BlankCard from "@/components/BlankCard";
 import HomePopup from "@/components/HomePopup";
 import UploadLinkPopUp from "@/components/UploadLinkPopUp";
 import CollectionsPopUp from "@/components/CollectionsPopUp";
+import Card from "@/components/Card";
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
@@ -20,8 +21,8 @@ export default function Home({ params }) {
   const [accounts, setAccounts] = useState(null);
   const [bal, setBal] = useState();
   const [showHomePopUp, setShowHomePopUp] = useState(false);
-  const [showUploadLink, setShowUploadLink] = useState(true);
-  const [showCollectionPopUp, setShowCollectionsPopUp] = useState(false);
+  const [showUploadLink, setShowUploadLink] = useState(false);
+  const [showCollectionPopUp, setShowCollectionsPopUp] = useState(true);
 
   useEffect(() => {
     console.log(params.Marketplace);
@@ -39,33 +40,38 @@ export default function Home({ params }) {
 
       <div className="absolute inset-20 mt-20 rounded-xl bg-gray-800">
         <div className=" relative  h-9/12 rounded-xl mx-10 mt-10">
-          <div>
-            <p className="text-xl">
+          <div className="my-2">
+            <p className="text-xl ">
               Marketplace ID:{" "}
               <span className="text-yellow-400 ml-2">{params.Marketplace}</span>
             </p>
           </div>
-          <div>
+          <div className="my-2">
             <p className="text-xl">
               Owner ID:{" "}
               <span className="text-yellow-400 ml-2">{params.Marketplace}</span>
             </p>
           </div>
-          <div>
+          <div className="my-2">
             <p className="text-xl">
               Date Created:{" "}
               <span className="text-yellow-400 ml-2">2024-10-10</span>
             </p>
           </div>
-          <div>
+          <div className="my-2">
             <p className="text-xl">
               Genera: <span className="text-yellow-400 ml-2">Fantacy</span>
             </p>
           </div>
 
-          <div>
+          <div className="my-2">
             <p className="text-xl">
               NFT Available: <span className="text-yellow-400 ml-2">12</span>
+            </p>
+          </div>
+          <div className="my-2">
+            <p className="text-xl">
+              Token Amount: <span className="text-yellow-400 ml-2">100</span>
             </p>
           </div>
         </div>
@@ -74,8 +80,8 @@ export default function Home({ params }) {
             url={
               "https://lottie.host/770383c2-dc9d-469f-bf71-db2bb3d87a9a/AvhUr5PL2U.json"
             }
-            width={400}
-            height={400}
+            width={350}
+            height={350}
           />
         </div>
         <div className="grid items-end">
@@ -173,6 +179,7 @@ export default function Home({ params }) {
             </p>
           </div>
 
+          <Card />
           <BlankCard setShowHomePopUp={setShowHomePopUp} />
           {showHomePopUp && (
             <HomePopup

@@ -7,9 +7,9 @@ export default function CollectionsPopUp({
 }) {
   const refElement = useRef();
 
-  const handleUpload = () => {
-    setShowHomePopUp(false);
-    setShowUploadLink(true);
+  const handleCollections = () => {
+    setShowCollectionsPopUp(false);
+    setShowHomePopUp(true);
   };
 
   const refereceModal = (e) => {
@@ -22,9 +22,10 @@ export default function CollectionsPopUp({
     <div
       ref={refElement}
       onClick={refereceModal}
-      className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center"
+      className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex "
+      //justify-center items-center
     >
-      <div className="mt-10 flex flex-col gap-5 text-white">
+      <div className="flex flex-col gap-5 text-white">
         <button
           className="place-self-end"
           onClick={() => setShowHomePopUp(false)}
@@ -33,14 +34,34 @@ export default function CollectionsPopUp({
           <p className=" font-bold text-xl">Choose NFTs to Add</p>
           <div className="flex justify-between gap-x-5 p-5">
             <DemoCard />
+            <DemoCard />
+            <DemoCard />
+            <DemoCard />
+            <DemoCard />
           </div>
 
-          <button
-            className="px-10 py-5 bg-blue-900 rounded-lg"
-            onClick={() => setShowCollectionsPopUp(false)}
-          >
-            Close
-          </button>
+          <div className="flex justify-center">
+            <button className="bg-yellow-400 mt-2 px-5 pt-3 pb-2.5 rounded-xl hover:bg-yellow-800">
+              View More
+              <img src="./arright.png" className="h-8 w-8 inline-block ml-3" />
+            </button>
+          </div>
+
+          <div className="flex gap-x-4 justify-between">
+            <button
+              className="px-10 py-5 bg-blue-900 rounded-lg"
+              onClick={() => handleCollections()}
+            >
+              Go Back
+            </button>
+
+            <button
+              className="px-10 py-5 bg-blue-900 rounded-lg"
+              onClick={() => setShowCollectionsPopUp(false)}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
