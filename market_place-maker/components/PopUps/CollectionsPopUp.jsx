@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import DemoCard from "./DemoCard";
+import DemoCard from "../DemoCard";
 
 export default function CollectionsPopUp({
   setShowHomePopUp,

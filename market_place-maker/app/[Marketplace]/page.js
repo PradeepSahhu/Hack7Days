@@ -4,18 +4,17 @@ import AdvancedNav from "@/components/AdvancedNav";
 import Search from "@/components/Search";
 import Animation from "@/components/Animation";
 import BlankCard from "@/components/BlankCard";
-import HomePopup from "@/components/HomePopup";
-import UploadLinkPopUp from "@/components/UploadLinkPopUp";
-import CollectionsPopUp from "@/components/CollectionsPopUp";
+import HomePopup from "@/components/PopUps/HomePopup";
+import UploadLinkPopUp from "@/components/PopUps/UploadLinkPopUp";
+import CollectionsPopUp from "@/components/PopUps/CollectionsPopUp";
 import Card from "@/components/Card";
-import BuyTokensPopUp from "@/components/BuyTokensPopUp";
-import TransferTokenPopUp from "@/components/TransferTokensPopUp";
+import BuyTokensPopUp from "@/components/PopUps/BuyTokensPopUp";
+import TransferTokenPopUp from "@/components/PopUps/TransferTokensPopUp";
+import Link from "next/link";
 
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
-  const [mintAndBurnCondition, setmintAndBurnCondition] = useState(false);
-  const [transferFriendCondition, setTransferFriendCondition] = useState(false);
   const [boughtCondition, setBoughtCondition] = useState(false);
   const [burnCondition, setBurnCondition] = useState(false);
   const [nftCollection, setNftCollection] = useState([]);
@@ -25,7 +24,7 @@ export default function Home({ params }) {
   const [showUploadLink, setShowUploadLink] = useState(false);
   const [showCollectionPopUp, setShowCollectionsPopUp] = useState(false);
   const [showBuyToken, setShowBuyToken] = useState(false);
-  const [showTransferToken, setShowTransferToken] = useState(true);
+  const [showTransferToken, setShowTransferToken] = useState(false);
 
   useEffect(() => {
     console.log(params.Marketplace);
@@ -42,55 +41,62 @@ export default function Home({ params }) {
       </div>
 
       <div className="absolute inset-20 mt-20 rounded-xl bg-gray-800">
-        <div className=" relative  h-9/12 rounded-xl mx-10 mt-10">
-          <div className="my-2">
-            <p className="text-xl ">
-              Marketplace ID:{" "}
-              <span className="text-yellow-400 ml-2">{params.Marketplace}</span>
-            </p>
-          </div>
-          <div className="my-2">
-            <p className="text-xl">
-              Owner ID:{" "}
-              <span className="text-yellow-400 ml-2">{params.Marketplace}</span>
-            </p>
-          </div>
-          <div className="my-2">
-            <p className="text-xl">
-              Date Created:{" "}
-              <span className="text-yellow-400 ml-2">2024-10-10</span>
-            </p>
-          </div>
-          <div className="my-2">
-            <p className="text-xl">
-              Genera: <span className="text-yellow-400 ml-2">Fantacy</span>
-            </p>
-          </div>
+        <div className=" relative  h-9/12 rounded-xl mx-10 mt-10 flex justify-between">
+          <div className="">
+            <div className="my-2">
+              <p className="text-xl ">
+                Marketplace ID:{" "}
+                <span className="text-yellow-400 ml-2">
+                  {params.Marketplace}
+                </span>
+              </p>
+            </div>
+            <div className="my-2">
+              <p className="text-xl">
+                Owner ID:{" "}
+                <span className="text-yellow-400 ml-2">
+                  {params.Marketplace}
+                </span>
+              </p>
+            </div>
+            <div className="my-2">
+              <p className="text-xl">
+                Date Created:{" "}
+                <span className="text-yellow-400 ml-2">2024-10-10</span>
+              </p>
+            </div>
+            <div className="my-2">
+              <p className="text-xl">
+                Genera: <span className="text-yellow-400 ml-2">Fantacy</span>
+              </p>
+            </div>
 
-          <div className="my-2">
-            <p className="text-xl">
-              NFT Available: <span className="text-yellow-400 ml-2">12</span>
-            </p>
+            <div className="my-2">
+              <p className="text-xl">
+                NFT Available: <span className="text-yellow-400 ml-2">12</span>
+              </p>
+            </div>
+            <div className="my-2">
+              <p className="text-xl">
+                Token Amount: <span className="text-yellow-400 ml-2">100</span>
+              </p>
+            </div>
           </div>
-          <div className="my-2">
-            <p className="text-xl">
-              Token Amount: <span className="text-yellow-400 ml-2">100</span>
-            </p>
+          <div className="flex justify-end">
+            <Animation
+              url={
+                "https://lottie.host/770383c2-dc9d-469f-bf71-db2bb3d87a9a/AvhUr5PL2U.json"
+              }
+              width={400}
+              height={400}
+            />
           </div>
         </div>
-        <div className="w-full flex justify-end">
-          <Animation
-            url={
-              "https://lottie.host/770383c2-dc9d-469f-bf71-db2bb3d87a9a/AvhUr5PL2U.json"
-            }
-            width={350}
-            height={350}
-          />
-        </div>
-        <div className="grid items-end">
-          <div className="grid justify-start">
-            <button className="px-10 rounded-xl bg-yellow-400 pt-3 pb-2.5">
-              Click here
+
+        <div className="grid items-end my-5">
+          <div className="grid justify-center ">
+            <button className="px-10 rounded-xl bg-yellow-400 pt-3 pb-2.5 shadow-orange-500 shadow-md">
+              Withdraw Amount
             </button>
           </div>
         </div>
@@ -104,7 +110,7 @@ export default function Home({ params }) {
           <div className="grid grid-cols-4 gap-5">
             <div className="flex justify-center">
               <button
-                className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
+                className="bg-gradient-to-r from-yellow-400 to-black px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
                 onClick={() => setShowBuyToken(true)}
               >
                 Buy DGN Tokens
@@ -112,34 +118,28 @@ export default function Home({ params }) {
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
+                className="bg-gradient-to-r from-yellow-400  to-black px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
                 onClick={() => setShowTransferToken(true)}
               >
                 Transfer DGN Tokens
               </button>
             </div>
             <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl">
+              <button className="bg-gradient-to-r from-yellow-400 to-black px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl">
                 Burn DGN Tokens
               </button>
             </div>
             <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl">
+              <Link
+                className="bg-gradient-to-r from-yellow-400 to-black px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
+                href="./BoughtNFTs"
+              >
                 View Bought NFTs
-              </button>
+              </Link>
             </div>
           </div>
         </div>
-        {mintAndBurnCondition && (
-          <MintAndBurnInput setAmount={setAmount} mintTokens={mintTokens} />
-        )}
-        {transferFriendCondition && (
-          <TransferFriend
-            setTransAmount={setTransAmount}
-            setTransferAddress={setTransferAddress}
-            transFriend={transFriend}
-          />
-        )}
+
         {burnCondition && (
           <BurnToken setBurnAmount={setBurnAmount} burnMyToken={burnMyToken} />
         )}

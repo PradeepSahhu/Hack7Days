@@ -33,14 +33,14 @@ export default function TransferTokenPopUp({ setShowTransferToken }) {
                 Enter the Address
               </label>
               <input
-                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400"
+                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400 focus:outline-none"
                 placeholder="Enter the Address "
               />
               <label className="grid col-start-1 col-end-1 ">
                 Enter the Amount
               </label>
               <input
-                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400"
+                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400 focus:outline-none"
                 placeholder="Enter the Token Amount"
               />
             </form>

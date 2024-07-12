@@ -1,11 +1,19 @@
 import { useRef } from "react";
 
-export default function BuyTokensPopUp({ setShowBuyToken }) {
+export default function UploadLinkPopUp({
+  setShowHomePopUp,
+  setShowUploadLink,
+}) {
   const refElement = useRef();
+
+  const handleClose = () => {
+    setShowUploadLink(false);
+    setShowHomePopUp(true);
+  };
 
   const refereceModal = (e) => {
     if (refElement.current == e.target) {
-      setShowBuyToken(false);
+      setShowUploadLink(false);
     }
   };
 
@@ -18,26 +26,23 @@ export default function BuyTokensPopUp({ setShowBuyToken }) {
       <div className="mt-10 flex flex-col gap-5 text-white">
         <button
           className="place-self-end"
-          onClick={() => setShowBuyToken(false)}
+          onClick={() => setShowUploadLink(false)}
         ></button>
         <div className="bg-black  rounded-xl flex flex-col px-20 py-10  items-center">
           <div className="flex justify-center">
             <p className="text-[3rem] font-bold text-yellow-500 text-transparent">
-              Purchase Tokens
+              Link Upload
             </p>
-          </div>
-          <div>
-            <p className="font-extralight text-sm">1 Token = 1000 Wei</p>
           </div>
 
           <div className=" bg-black text-white grid grid-cols-2">
             <form className="grid bg-black px-20 py-5  col-start-1 col-end-3  rounded-xl">
               <label className="grid col-start-1 col-end-1 ">
-                Enter the Amount
+                Enter the IPFS LINK
               </label>
               <input
-                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400"
-                placeholder="Enter the Token Amount"
+                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus:outline-none"
+                placeholder=""
               />
             </form>
           </div>
@@ -48,7 +53,13 @@ export default function BuyTokensPopUp({ setShowBuyToken }) {
           <div className="flex justify-between gap-x-10">
             <button
               className="px-10 py-5 bg-blue-900 rounded-lg"
-              onClick={() => setShowBuyToken(false)}
+              onClick={() => handleClose()}
+            >
+              Go Back
+            </button>
+            <button
+              className="px-10 py-5 bg-blue-900 rounded-lg"
+              onClick={() => setShowUploadLink(false)}
             >
               Close
             </button>
