@@ -6,6 +6,7 @@ import Animation from "@/components/Animation";
 import BlankCard from "@/components/BlankCard";
 import HomePopup from "@/components/HomePopup";
 import UploadLinkPopUp from "@/components/UploadLinkPopUp";
+import CollectionsPopUp from "@/components/CollectionsPopUp";
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
@@ -18,8 +19,9 @@ export default function Home({ params }) {
   const [boughtNFT, setBoughtNFT] = useState([]);
   const [accounts, setAccounts] = useState(null);
   const [bal, setBal] = useState();
-  const [showHomePopUp, setShowHomePopUp] = useState(true);
-  const [showUploadLink, setShowUploadLink] = useState(false);
+  const [showHomePopUp, setShowHomePopUp] = useState(false);
+  const [showUploadLink, setShowUploadLink] = useState(true);
+  const [showCollectionPopUp, setShowCollectionsPopUp] = useState(false);
 
   useEffect(() => {
     console.log(params.Marketplace);
@@ -176,9 +178,21 @@ export default function Home({ params }) {
             <HomePopup
               setShowHomePopUp={setShowHomePopUp}
               setShowUploadLink={setShowUploadLink}
+              setShowCollectionsPopUp={setShowCollectionsPopUp}
             />
           )}
-          {showUploadLink && <UploadLinkPopUp />}
+          {showUploadLink && (
+            <UploadLinkPopUp
+              setShowHomePopUp={setShowHomePopUp}
+              setShowUploadLink={setShowUploadLink}
+            />
+          )}
+          {showCollectionPopUp && (
+            <CollectionsPopUp
+              setShowHomePopUp={setShowHomePopUp}
+              setShowCollectionsPopUp={setShowCollectionsPopUp}
+            />
+          )}
         </div>
       </div>
     </div>

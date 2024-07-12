@@ -1,8 +1,8 @@
 import { useRef } from "react";
+import DemoCard from "./DemoCard";
 
-export default function HomePopup({
+export default function CollectionsPopUp({
   setShowHomePopUp,
-  setShowUploadLink,
   setShowCollectionsPopUp,
 }) {
   const refElement = useRef();
@@ -12,14 +12,9 @@ export default function HomePopup({
     setShowUploadLink(true);
   };
 
-  const handleCollections = () => {
-    setShowHomePopUp(false);
-    setShowCollectionsPopUp(true);
-  };
-
   const refereceModal = (e) => {
     if (refElement.current == e.target) {
-      setShowHomePopUp(false);
+      setShowCollectionsPopUp(false);
     }
   };
 
@@ -35,25 +30,14 @@ export default function HomePopup({
           onClick={() => setShowHomePopUp(false)}
         ></button>
         <div className="bg-black  rounded-xl flex flex-col px-20 py-10 gap-5 items-center">
-          <p className=" font-bold text-xl">Choose the Source</p>
+          <p className=" font-bold text-xl">Choose NFTs to Add</p>
           <div className="flex justify-between gap-x-5 p-5">
-            <button
-              className="px-10 py-5 bg-orange-600 rounded-lg"
-              onClick={() => handleUpload()}
-            >
-              Upload Link
-            </button>
-            <button
-              className="px-10 py-5 bg-orange-600 rounded-lg"
-              onClick={() => handleCollections()}
-            >
-              Choose From Collections
-            </button>
+            <DemoCard />
           </div>
 
           <button
             className="px-10 py-5 bg-blue-900 rounded-lg"
-            onClick={() => setShowHomePopUp(false)}
+            onClick={() => setShowCollectionsPopUp(false)}
           >
             Close
           </button>

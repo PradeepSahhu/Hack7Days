@@ -1,11 +1,19 @@
 import { useRef } from "react";
 
-export default function UploadLinkPopUp({ setShowPopup }) {
+export default function UploadLinkPopUp({
+  setShowHomePopUp,
+  setShowUploadLink,
+}) {
   const refElement = useRef();
+
+  const handleClose = () => {
+    setShowUploadLink(false);
+    setShowHomePopUp(true);
+  };
 
   const refereceModal = (e) => {
     if (refElement.current == e.target) {
-      setShowPopup(false);
+      setShowUploadLink(false);
     }
   };
 
@@ -18,41 +26,40 @@ export default function UploadLinkPopUp({ setShowPopup }) {
       <div className="mt-10 flex flex-col gap-5 text-white">
         <button
           className="place-self-end"
-          onClick={() => setShowPopup(false)}
+          onClick={() => setShowUploadLink(false)}
         ></button>
-        <div className="bg-black  rounded-xl flex flex-col px-20 py-10 gap-5 items-center">
-          <p className=" font-bold text-xl">Enter the IPFS Link</p>
+        <div className="bg-black  rounded-xl flex flex-col px-20 py-10  items-center">
+          <div className="flex justify-center">
+            <p className="text-[3rem] font-bold text-yellow-500 text-transparent">
+              Link Upload
+            </p>
+          </div>
 
-          <div className=" bg-black text-white grid grid-cols-2 m-10">
-            <form className="grid bg-black px-20 py-10  col-start-1 col-end-3 mx-64 rounded-xl">
-              <div className="flex justify-center mb-5">
-                <p className="text-[3rem] font-bold text-yellow-500 text-transparent">
-                  Link Upload
-                </p>
-              </div>
+          <div className=" bg-black text-white grid grid-cols-2">
+            <form className="grid bg-black px-20 py-5  col-start-1 col-end-3  rounded-xl">
               <label className="grid col-start-1 col-end-1 ">
                 Enter the IPFS LINK
               </label>
               <input
-                className="text-white  p-5 rounded-md mx-5 my-5 border-yellow-400 border-2 bg-transparent"
+                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent"
                 placeholder=""
               />
             </form>
           </div>
-          <button className="px-10 py-5 bg-orange-600 rounded-lg">
+          <button className="px-10 py-5 bg-orange-600 rounded-lg mb-5">
             Submit
           </button>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-x-10">
             <button
               className="px-10 py-5 bg-blue-900 rounded-lg"
-              onClick={() => setShowPopup(false)}
+              onClick={() => handleClose()}
             >
               Go Back
             </button>
             <button
               className="px-10 py-5 bg-blue-900 rounded-lg"
-              onClick={() => setShowPopup(false)}
+              onClick={() => setShowUploadLink(false)}
             >
               Close
             </button>
