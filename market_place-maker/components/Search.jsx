@@ -1,7 +1,7 @@
 export default function Search() {
   return (
-    <div className="bg-black text-white">
-      <nav className="bg-black text-white shadow-lg">
+    <div className="bg-transparent text-white">
+      <nav className="bg-transparent text-white shadow-lg">
         <div className=" mx-auto px-4">
           <div className="flex justify-between">
             <div className="flex space-x-7">

@@ -3,7 +3,7 @@ export default function Organization() {
     <div className=" bg-black text-white grid grid-cols-2 m-10">
       <form className="grid bg-black px-20 py-10  col-start-1 col-end-3 mx-64 rounded-xl">
         <div className="flex justify-center mb-5">
-          <p className="text-2xl font-bold text-yellow-600 text-transparent">
+          <p className="text-[3rem] font-bold text-yellow-500 text-transparent">
             NFT MarketPlace Details
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function Organization() {
       </form>
 
       <div className="flex justify-center col-span-2 items-center py-5">
-        <button className="bg-blue-900 p-5 rounded-xl hover:bg-rose-900">
+        <button className="bg-yellow-400 p-5 rounded-xl hover:bg-rose-900">
           Register
         </button>
       </div>
