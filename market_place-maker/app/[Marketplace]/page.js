@@ -8,6 +8,9 @@ import HomePopup from "@/components/HomePopup";
 import UploadLinkPopUp from "@/components/UploadLinkPopUp";
 import CollectionsPopUp from "@/components/CollectionsPopUp";
 import Card from "@/components/Card";
+import BuyTokensPopUp from "@/components/BuyTokensPopUp";
+import TransferTokenPopUp from "@/components/TransferTokensPopUp";
+
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
   const [showMarket, setShowMarket] = useState(false);
@@ -17,12 +20,12 @@ export default function Home({ params }) {
   const [burnCondition, setBurnCondition] = useState(false);
   const [nftCollection, setNftCollection] = useState([]);
   const [redeemNFT, setRedeemNFT] = useState(false);
-  const [boughtNFT, setBoughtNFT] = useState([]);
-  const [accounts, setAccounts] = useState(null);
-  const [bal, setBal] = useState();
+
   const [showHomePopUp, setShowHomePopUp] = useState(false);
   const [showUploadLink, setShowUploadLink] = useState(false);
-  const [showCollectionPopUp, setShowCollectionsPopUp] = useState(true);
+  const [showCollectionPopUp, setShowCollectionsPopUp] = useState(false);
+  const [showBuyToken, setShowBuyToken] = useState(false);
+  const [showTransferToken, setShowTransferToken] = useState(true);
 
   useEffect(() => {
     console.log(params.Marketplace);
@@ -100,12 +103,18 @@ export default function Home({ params }) {
         <div className="w-full grid items-center my-10">
           <div className="grid grid-cols-4 gap-5">
             <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl">
-                Mint DGN Tokens
+              <button
+                className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
+                onClick={() => setShowBuyToken(true)}
+              >
+                Buy DGN Tokens
               </button>
             </div>
             <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl">
+              <button
+                className="bg-gradient-to-r from-teal-600 via-blue-600 to-indigo-600 px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
+                onClick={() => setShowTransferToken(true)}
+              >
                 Transfer DGN Tokens
               </button>
             </div>
@@ -136,18 +145,18 @@ export default function Home({ params }) {
         )}
         {boughtCondition && <BoughtItems />}
 
-        <hr className="col-start-1 col-end-4 w-full h-1 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
+        <hr className="col-start-1 col-end-4 w-full h-0.5 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
 
-        {!redeemNFT && (
+        {/* {!redeemNFT && (
           <div className="">
             <div className="flex justify-center p-5">
               <button className="bg-gradient-to-r from-red-600 via-blue-600 to-indigo-600 px-8 pb-3 pt-4 text-xs font-medium uppercase leading-normal rounded-2xl">
                 Show NFT Market Place
               </button>
             </div>
-            <hr className="col-start-1 col-end-4 w-full h-1 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
+            <hr className="col-start-1 col-end-4 w-full h-0.5 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
           </div>
-        )}
+        )} */}
 
         {redeemNFT && (
           <div className="mt-10 col-start-1 col-end-4 bg-opacity-90 p-10 justify-center space-x-8 space-y-5">
@@ -199,6 +208,10 @@ export default function Home({ params }) {
               setShowHomePopUp={setShowHomePopUp}
               setShowCollectionsPopUp={setShowCollectionsPopUp}
             />
+          )}
+          {showBuyToken && <BuyTokensPopUp setShowBuyToken={setShowBuyToken} />}
+          {showTransferToken && (
+            <TransferTokenPopUp setShowTransferToken={setShowTransferToken} />
           )}
         </div>
       </div>
