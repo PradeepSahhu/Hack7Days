@@ -189,6 +189,7 @@ export default function Home() {
                   ? registeredMarketPlace.map((eachMarket, index) => (
                       <Link href={`${eachMarket.instanceAddress}`} key={index}>
                         <Registered
+                          key={index}
                           mIndex={index + 1}
                           mName={eachMarket.name}
                           mAddress={eachMarket.instanceAddress}

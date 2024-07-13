@@ -69,3 +69,9 @@ contract MarketPlace is ERC20 {
 
     // function contractBalance() external view returns (uint) {
     //     return balanceOf(address(this));
+    // }
+
+    ///@notice to receive wei/ethers from external sources like other account
+
+    receive() external payable {}
+}

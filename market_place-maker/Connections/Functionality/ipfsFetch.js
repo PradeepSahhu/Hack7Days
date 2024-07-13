@@ -27,4 +27,5 @@ async function fetchMultipleData(urls, setFunc) {
   }
 }
 
-// Call the function to fet
+// Call the function to fetch data
+export default fetchMultipleData;

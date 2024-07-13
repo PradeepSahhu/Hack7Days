@@ -33,4 +33,7 @@ contract FactoryContract {
         return instances;
     }
 
-    function totalRegistered() external view returns (ui
+    function totalRegistered() external view returns (uint) {
+        return instances.length;
+    }
+}
