@@ -185,9 +185,6 @@ export default function Home() {
           <div className="flex justify-between ">
             <div className="flex justify-between gap-x-5 grid-cols-3 border-gray-600 border-2 px-3 py-4">
               <div>
-                <Registered />
-                <Registered />
-                <Registered />
                 {registeredMarketPlace
                   ? registeredMarketPlace.map((eachMarket, index) => (
                       <Link href={`${eachMarket.instanceAddress}`}>
