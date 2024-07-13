@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Navbar } from "@/components/navbar";
+// import { Navbar } from "@/components/navbar";
 import AdvancedNav from "@/components/AdvancedNav";
 import NextNav from "@/components/NextNav";
 import Item from "@/components/Item";
@@ -8,12 +8,97 @@ import Search from "@/components/Search";
 import Registered from "@/components/Registered";
 import Link from "next/link";
 import Animation from "@/components/Animation";
+import ContractConnection from "@/Operations/Connection";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [registered, setRegistered] = useState();
+  const [provider, setProvider] = useState();
+  const [connectedAccount, setConnectedAccount] = useState();
+  const [registeredMarketPlace, setRegisteredMarketPlace] = useState();
+
+  const handleAccount = async () => {
+    initWallet();
+    ContractConnection();
+  };
+
+  const initWallet = async () => {
+    console.log("Button is clicked");
+    let accounts = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+
+    if (accounts.length == 0) {
+      try {
+        console.log("init wallet is working");
+        // check if any wallet provider is installed. i.e metamask xdcpay etc
+        if (typeof window.ethereum === "undefined") {
+          console.log("Please install wallet.");
+          alert("Please install wallet.");
+          return;
+        } else {
+          // raise a request for the provider to connect the account to our website
+          const web3ModalVar = new Web3Modal({
+            cacheProvider: true,
+            providerOptions: {
+              walletconnect: {
+                package: WalletConnectProvider,
+              },
+            },
+          });
+
+          const accounts = await window.ethereum.request({
+            method: "eth_accounts",
+          });
+          setConnectedAccount(accounts);
+
+          if (accounts.length === 0) {
+            try {
+              const account = await window.ethereum.request({
+                method: "eth_requestAccounts",
+              });
+              setConnectedAccount(account);
+              console.log("MetaMask connected.");
+            } catch (error) {
+              console.log("can't connect to the account");
+            }
+          }
+
+          const instanceVar = await web3ModalVar.connect();
+          const providerVar = new ethers.providers.Web3Provider(instanceVar);
+          setProvider(providerVar);
+          console.log(provider);
+          // readNumber(providerVar);
+          return;
+        }
+      } catch (error) {
+        console.log(error);
+        return;
+      }
+    }
+  };
+
+  const getDeployedMarketPlace = async () => {
+    const contractInstance = await ContractConnection();
+    const res = await contractInstance.getInstances();
+    console.log(res);
+    setRegisteredMarketPlace(res);
+  };
+
+  useEffect(() => {
+    getDeployedMarketPlace();
+    initWallet();
+    // getDeployedMarketPlace();
+  });
   return (
     <div className="bg-black font-myFont">
       <AdvancedNav />
-      <Search />
+      <Search
+        handleAccount={handleAccount}
+        connectedAccount={connectedAccount}
+      />
       {/* <NextNav /> */}
       <div className="bg-transparent inset-0 z-0">
         <img src="./grid.jpg" className="w-full h-3/4 opacity-35 inset-0" />
@@ -103,6 +188,17 @@ export default function Home() {
                 <Registered />
                 <Registered />
                 <Registered />
+                {registeredMarketPlace
+                  ? registeredMarketPlace.map((eachMarket, index) => (
+                      <Link href={`${eachMarket.instanceAddress}`}>
+                        <Registered
+                          mIndex={index + 1}
+                          mName={eachMarket.name}
+                          mAddress={eachMarket.instanceAddress}
+                        />
+                      </Link>
+                    ))
+                  : ""}
               </div>
             </div>
             <div className="flex justify-between gap-x-5 grid-cols-3">

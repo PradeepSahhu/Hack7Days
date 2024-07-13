@@ -1,4 +1,39 @@
+"use client";
+import { useState } from "react";
+import ContractConnection from "@/Operations/Connection";
+import Web3Modal from "web3modal";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+
 export default function Search() {
+  const [connectedAccount, setConnectedAccount] = useState();
+
+  const handleAccount = async () => {
+    await ContractConnection();
+    await initWallet();
+  };
+
+  const initWallet = async () => {
+    const accounts = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+    setConnectedAccount(accounts[0]);
+
+    if (accounts.length === 0) {
+      try {
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        console.log("the requested account is " + account);
+        setConnectedAccount(account[0]);
+        console.log("MetaMask connected.");
+      } catch (error) {
+        console.log("can't connect to the account");
+      }
+    }
+
+    return;
+  };
+
   return (
     <div className="bg-transparent text-white">
       <nav className="bg-transparent text-white shadow-lg">
@@ -10,12 +45,12 @@ export default function Search() {
                   <span className="font-semibold text-white text-lg">NFT</span>
                 </a>
               </div>
-              <div className="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center space-x-1 ">
                 <a
                   href="#"
-                  className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300"
+                  className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300 rounded-xl"
                 >
-                  0x161aBA4657174De9a36C3Ee71bC8163118d88d43
+                  {connectedAccount ? connectedAccount : "No Account Connected"}
                 </a>
                 <div className="relative group">
                   <button className="py-4 px-2 text-white font-semibold hover:text-[#1679AB] transition duration-300">
@@ -144,8 +179,11 @@ export default function Search() {
 
             <div className="items-center flex gap-5">
               <div className="flex justify-center ">
-                <button className="  text-[16px] rounded-3xl px-1 py-0.5 bg-[#1679AB] border-1  text-black">
-                  Search
+                <button
+                  className="  text-[16px] rounded-3xl px-3 py-2 bg-[#1679AB] border-1  text-black"
+                  onClick={() => handleAccount()}
+                >
+                  Connect
                 </button>
               </div>
               <div className="flex justify-center ">
