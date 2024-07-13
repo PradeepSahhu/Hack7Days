@@ -187,7 +187,7 @@ export default function Home() {
               <div>
                 {registeredMarketPlace
                   ? registeredMarketPlace.map((eachMarket, index) => (
-                      <Link href={`${eachMarket.instanceAddress}`}>
+                      <Link href={`${eachMarket.instanceAddress}`} key={index}>
                         <Registered
                           mIndex={index + 1}
                           mName={eachMarket.name}
