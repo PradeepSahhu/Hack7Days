@@ -5,9 +5,40 @@ import Search from "@/components/Search";
 import Card from "@/components/Cards/Card";
 import BoughtCard from "@/components/Cards/BoughtCard";
 import ZoomCard from "@/components/PopUps/ZoomCard";
+import MarketPlaceConnection from "@/Operations/MarketPlaceConnection";
+import IpfsToArray from "@/Connections/Functionality/realPFS";
 
-export default function BoughtNFT({ NFTsArray }) {
+export default function BoughtNFT({ params }) {
   const [showZoomCard, setShowZoomCard] = useState(false);
+  const [mintedNFT, setMintedNft] = useState();
+
+  const alreadyBought = async () => {
+    try {
+      const contract = await MarketPlaceConnection(params.Marketplace);
+      const res = await contract.getMintedNFT();
+      // const res =
+      //   "https://ipfs.io/ipfs/QmY3ZPzoxw83GUFMU1VB669VWTCzDWv565TdNCqhGSpPg9";
+      const result = await IpfsToArray(res);
+
+      setMintedNft(result);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getImage = (ipfsURL) => {
+    const hash = ipfsURL.split("ipfs://")[1];
+    return `https://ipfs.io/ipfs/${hash}`;
+  };
+
+  useEffect(() => {
+    console.log(params.Marketplace);
+  }, []);
+
+  if (mintedNFT == undefined) {
+    alreadyBought();
+  }
 
   return (
     <div className="bg-black font-myFont">
@@ -30,11 +61,23 @@ export default function BoughtNFT({ NFTsArray }) {
         <BoughtCard setShowZoomCard={setShowZoomCard} />
         <BoughtCard setShowZoomCard={setShowZoomCard} />
         <BoughtCard setShowZoomCard={setShowZoomCard} />
+        {/* <BoughtCard setShowZoomCard={setShowZoomCard} />
         <BoughtCard setShowZoomCard={setShowZoomCard} />
         <BoughtCard setShowZoomCard={setShowZoomCard} />
         <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
+        <BoughtCard setShowZoomCard={setShowZoomCard} /> */}
+        {mintedNFT != undefined
+          ? mintedNFT.map((eachNFT, index) => (
+              <BoughtCard
+                key={index}
+                setShowZoomCard={setShowZoomCard}
+                itemName={eachNFT.name}
+                itemDescription={eachNFT.description}
+                itemSrc={getImage(eachNFT.image)}
+                itemPrice={eachNFT.price}
+              />
+            ))
+          : ""}
       </div>
       {showZoomCard && <ZoomCard setShowZoomCard={setShowZoomCard} />}
     </div>

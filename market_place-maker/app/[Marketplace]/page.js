@@ -17,13 +17,6 @@ import IpfsToArray from "@/Connections/Functionality/realPFS";
 import fetchMultipleData from "@/Connections/Functionality/ipfsFetch";
 
 export default function Home({ params }) {
-  const [connected, setConnected] = useState(false);
-  const [showMarket, setShowMarket] = useState(false);
-  const [boughtCondition, setBoughtCondition] = useState(false);
-  const [burnCondition, setBurnCondition] = useState(false);
-  const [nftCollection, setNftCollection] = useState([]);
-  const [redeemNFT, setRedeemNFT] = useState(false);
-
   const [showHomePopUp, setShowHomePopUp] = useState(false);
   const [showUploadLink, setShowUploadLink] = useState(false);
   const [showCollectionPopUp, setShowCollectionsPopUp] = useState(false);
@@ -45,6 +38,8 @@ export default function Home({ params }) {
 
   //collections.
   const [collections, setCollections] = useState();
+
+  //already minted NFTs
 
   const urls = [
     "https://ipfs.io/ipfs/QmP52JDE2gdL3Rc8E83aEmD7SUnhcb5Jjhoy5YoSx4TPRZ", //lambo
@@ -95,7 +90,7 @@ export default function Home({ params }) {
 
   const toMintNFT = async (URI, price) => {
     try {
-      const contract = await AssetConnection(params.Marketplace);
+      const contract = await MarketPlaceConnection(params.Marketplace);
       await contract.redeemTokens(URI, price);
     } catch (error) {
       console.log(error);
@@ -285,7 +280,7 @@ export default function Home({ params }) {
             <div className="flex justify-center">
               <Link
                 className="bg-gradient-to-r from-yellow-400 to-black px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal rounded-2xl"
-                href="./BoughtNFTs"
+                href={`${params.Marketplace}/BoughtNFTs`}
               >
                 View Bought NFTs
               </Link>

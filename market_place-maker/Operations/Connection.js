@@ -22,7 +22,8 @@ async function ContractConnection() {
     const instanceVar = await web3ModalVar.connect();
     const providerVar = new ethers.providers.Web3Provider(instanceVar);
 
-    const contractAddress = "0xf240FcA7176BE7BAB713908eb55aDaA9Fc3a114e";
+    // const contractAddress = "0xf240FcA7176BE7BAB713908eb55aDaA9Fc3a114e";
+    const contractAddress = "0x6a84c8d68A5cEaadF2d88bC2D566C3dA7cd1F047";
     console.log(contractAddress);
     console.log(instanceVar);
 

@@ -1,13 +1,12 @@
 async function IpfsToArray(urls) {
   // Define the URLs to fetch data from
   console.log(urls);
-
-  // Use Promise.all to fetch all URLs concurrently
-  const fetchPromises = urls.map((url) =>
-    fetch(url).then((response) => response.json())
-  );
-
   try {
+    // Use Promise.all to fetch all URLs concurrently
+    const fetchPromises = urls.map((url) =>
+      fetch(url).then((response) => response.json())
+    );
+
     // Wait for all fetch operations to complete
     const results = await Promise.all(fetchPromises);
 
