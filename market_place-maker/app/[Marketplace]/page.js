@@ -13,6 +13,8 @@ import TransferTokenPopUp from "@/components/PopUps/TransferTokensPopUp";
 import Link from "next/link";
 import MarketPlaceConnection from "@/Operations/MarketPlaceConnection";
 import AssetConnection from "@/Operations/AssetConnection";
+import IpfsToArray from "@/Connections/Functionality/realPFS";
+import fetchMultipleData from "@/Connections/Functionality/ipfsFetch";
 
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
@@ -36,6 +38,15 @@ export default function Home({ params }) {
   const [uploadString, setUploadString] = useState();
   const [assetConnectionAddress, setAssetConnectionAddress] = useState();
 
+  //ipfs
+  const [allIPFS, setAllIPFS] = useState();
+  const [toMintIPFS, setToMintIPFS] = useState();
+
+  const setFunc = async (data) => {
+    setToMintIPFS(data);
+    console.log("The data is : " + data[0].price);
+  };
+
   const BuyTokens = async () => {
     const contract = await MarketPlaceConnection(params.Marketplace);
     contract.buyTokens(parseInt(amountValue), { value: parseInt(weiFortoken) });
@@ -43,11 +54,11 @@ export default function Home({ params }) {
   };
 
   const uploadLink = async () => {
-    console.log(
-      "The address of asset Connection is : " + assetConnectionAddress
-    );
+    // console.log(
+    //   "The address of asset Connection is : " + assetConnectionAddress
+    // );
     const contract = await AssetConnection(assetConnectionAddress);
-    // await contract.addMintNFT(uploadString);
+    await contract.addMintNFT(uploadString);
     console.log(uploadString);
   };
 
@@ -64,11 +75,34 @@ export default function Home({ params }) {
     setAssetConnectionAddress(res);
   };
 
+  const getAllIPFS = async () => {
+    console.log(
+      "The address of asset Connection is : " + assetConnectionAddress
+    );
+    const contract = await AssetConnection(assetConnectionAddress);
+    console.log("The contract Instances are " + contract);
+
+    const res = await contract.returnToMintNFT();
+    setAllIPFS(res);
+    console.log("Set all IPFS" + res);
+  };
+
   useEffect(() => {
     console.log(params.Marketplace);
     showTokensAmount();
     getAssetConnectionAddress();
   }, []);
+
+  if (allIPFS == undefined) {
+    getAllIPFS();
+  }
+  if (toMintIPFS == undefined) {
+    fetchMultipleData(allIPFS, setFunc);
+  }
+  const getImage = (ipfsURL) => {
+    const hash = ipfsURL.split("ipfs://")[1];
+    return `https://ipfs.io/ipfs/${hash}`;
+  };
 
   return (
     <div className="bg-black font-myFont">
@@ -184,46 +218,7 @@ export default function Home({ params }) {
           </div>
         </div>
 
-        {burnCondition && (
-          <BurnToken setBurnAmount={setBurnAmount} burnMyToken={burnMyToken} />
-        )}
-        {boughtCondition && <BoughtItems />}
-
         <hr className="col-start-1 col-end-4 w-full h-0.5 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
-
-        {/* {!redeemNFT && (
-          <div className="">
-            <div className="flex justify-center p-5">
-              <button className="bg-gradient-to-r from-red-600 via-blue-600 to-indigo-600 px-8 pb-3 pt-4 text-xs font-medium uppercase leading-normal rounded-2xl">
-                Show NFT Market Place
-              </button>
-            </div>
-            <hr className="col-start-1 col-end-4 w-full h-0.5 mx-auto bg-gray-100 border-0 rounded  dark:bg-gray-700" />
-          </div>
-        )} */}
-
-        {redeemNFT && (
-          <div className="mt-10 col-start-1 col-end-4 bg-opacity-90 p-10 justify-center space-x-8 space-y-5">
-            <div className="text-2xl bolder flex justify-center mb-10 ">
-              <p className="bg-gradient-to-r from-red-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent px-10 text-5xl">
-                NFT STORE
-              </p>
-            </div>
-            {showMarket &&
-              nftCollection.map((eachItem, index) => (
-                <Item
-                  key={index}
-                  itemName={eachItem.name}
-                  itemDescription={eachItem.description}
-                  itemSrc={getImage(eachItem.image)}
-                  itemPrice={eachItem.price}
-                  mintNFTFunction={mintNFTs}
-                  URI={urls[index]}
-                />
-              ))}
-            ;
-          </div>
-        )}
 
         <div className="mt-10 col-start-1 col-end-4 bg-opacity-90 p-10 justify-center space-x-8 space-y-5">
           <div className="text-2xl bolder flex justify-center mb-10 ">
@@ -233,6 +228,17 @@ export default function Home({ params }) {
           </div>
 
           <Card />
+          {toMintIPFS
+            ? toMintIPFS.map((eachItem, index) => (
+                <Card
+                  key={index}
+                  itemName={eachItem.name}
+                  itemDescription={eachItem.description}
+                  itemSrc={getImage(eachItem.image)}
+                  itemPrice={eachItem.price}
+                />
+              ))
+            : ""}
           <BlankCard setShowHomePopUp={setShowHomePopUp} />
           {showHomePopUp && (
             <HomePopup

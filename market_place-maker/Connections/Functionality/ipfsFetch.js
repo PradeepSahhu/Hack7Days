@@ -1,6 +1,6 @@
 async function fetchMultipleData(urls, setFunc) {
   // Define the URLs to fetch data from
-  console.log(urls);
+  console.log("The urls are : " + urls);
 
   // Use Promise.all to fetch all URLs concurrently
   const fetchPromises = urls.map((url) =>
@@ -18,7 +18,7 @@ async function fetchMultipleData(urls, setFunc) {
     // }, {});
 
     // Log the combined JSON object
-    console.log(results);
+    console.log("results" + results);
 
     setFunc(results);
     return results;
@@ -28,4 +28,4 @@ async function fetchMultipleData(urls, setFunc) {
 }
 
 // Call the function to fetch data
-export default fetchMultipleData;
+ex
