@@ -1,6 +1,11 @@
 import { useRef } from "react";
 
-export default function BuyTokensPopUp({ setShowBuyToken }) {
+export default function BuyTokensPopUp({
+  setShowBuyToken,
+  setAmountValue,
+  BuyTokens,
+  setWeiForToken,
+}) {
   const refElement = useRef();
 
   const refereceModal = (e) => {
@@ -33,15 +38,27 @@ export default function BuyTokensPopUp({ setShowBuyToken }) {
           <div className=" bg-black text-white grid grid-cols-2">
             <form className="grid bg-black px-20 py-5  col-start-1 col-end-3  rounded-xl">
               <label className="grid col-start-1 col-end-1 ">
-                Enter the Amount
+                Enter the Token Amount
               </label>
               <input
                 className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400 focus:outline-none"
                 placeholder="Enter the Token Amount"
+                onChange={(e) => setAmountValue(e.target.value)}
+              />
+              <label className="grid col-start-1 col-end-1 ">
+                Enter the Wei To Transfer
+              </label>
+              <input
+                className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus-within:bg-black focus:outline-yellow-400 focus:outline-none"
+                placeholder="Enter the Token Amount"
+                onChange={(e) => setWeiForToken(e.target.value)}
               />
             </form>
           </div>
-          <button className="px-10 py-5 bg-orange-600 rounded-lg mb-5">
+          <button
+            className="px-10 py-5 bg-orange-600 rounded-lg mb-5"
+            onClick={() => BuyTokens()}
+          >
             Submit
           </button>
 

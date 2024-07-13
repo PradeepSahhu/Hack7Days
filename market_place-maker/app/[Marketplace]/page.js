@@ -11,6 +11,8 @@ import Card from "@/components/Cards/Card";
 import BuyTokensPopUp from "@/components/PopUps/BuyTokensPopUp";
 import TransferTokenPopUp from "@/components/PopUps/TransferTokensPopUp";
 import Link from "next/link";
+import MarketPlaceConnection from "@/Operations/MarketPlaceConnection";
+import AssetConnection from "@/Operations/AssetConnection";
 
 export default function Home({ params }) {
   const [connected, setConnected] = useState(false);
@@ -26,8 +28,34 @@ export default function Home({ params }) {
   const [showBuyToken, setShowBuyToken] = useState(false);
   const [showTransferToken, setShowTransferToken] = useState(false);
 
+  //-----------------------------------
+
+  const [amountValue, setAmountValue] = useState();
+  const [tokenAmount, setTokenAmount] = useState();
+  const [weiFortoken, setWeiForToken] = useState();
+  const [uploadString, setUploadString] = useState();
+
+  const BuyTokens = async () => {
+    const contract = await MarketPlaceConnection(params.Marketplace);
+    contract.buyTokens(parseInt(amountValue), { value: parseInt(weiFortoken) });
+    // console.log(parseInt(amountValue));
+  };
+
+  const uploadLink = async () => {
+    const contract = await AssetConnection();
+    // await contract.addMintNFT(uploadString);
+    console.log(uploadString);
+  };
+
+  const showTokensAmount = async () => {
+    const contract = await MarketPlaceConnection(params.Marketplace);
+    const response = await contract.checkingBalance();
+    setTokenAmount(parseInt(response));
+  };
+
   useEffect(() => {
     console.log(params.Marketplace);
+    showTokensAmount();
   });
 
   return (
@@ -78,7 +106,11 @@ export default function Home({ params }) {
             </div>
             <div className="my-2">
               <p className="text-xl">
-                Token Amount: <span className="text-yellow-400 ml-2">100</span>
+                Token Amount:{" "}
+                <span className="text-yellow-400 ml-2">
+                  {" "}
+                  {tokenAmount ? tokenAmount : "100xx"}
+                </span>
               </p>
             </div>
           </div>
@@ -201,6 +233,8 @@ export default function Home({ params }) {
             <UploadLinkPopUp
               setShowHomePopUp={setShowHomePopUp}
               setShowUploadLink={setShowUploadLink}
+              setUploadString={setUploadString}
+              uploadLink={uploadLink}
             />
           )}
           {showCollectionPopUp && (
@@ -209,7 +243,14 @@ export default function Home({ params }) {
               setShowCollectionsPopUp={setShowCollectionsPopUp}
             />
           )}
-          {showBuyToken && <BuyTokensPopUp setShowBuyToken={setShowBuyToken} />}
+          {showBuyToken && (
+            <BuyTokensPopUp
+              setShowBuyToken={setShowBuyToken}
+              setAmountValue={setAmountValue}
+              BuyTokens={BuyTokens}
+              setWeiForToken={setWeiForToken}
+            />
+          )}
           {showTransferToken && (
             <TransferTokenPopUp setShowTransferToken={setShowTransferToken} />
           )}

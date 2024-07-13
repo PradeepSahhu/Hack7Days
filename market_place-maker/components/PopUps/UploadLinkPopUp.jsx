@@ -3,6 +3,7 @@ import { useRef } from "react";
 export default function UploadLinkPopUp({
   setShowHomePopUp,
   setShowUploadLink,
+  uploadLink,
 }) {
   const refElement = useRef();
 

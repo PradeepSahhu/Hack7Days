@@ -401,6 +401,19 @@ const nextConfig = {
       },
       {
         inputs: [],
+        name: "returnAsset",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
         name: "symbol",
         outputs: [
           {

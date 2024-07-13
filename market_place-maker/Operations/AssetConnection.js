@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-async function MarketPlaceConnection(contractAddress) {
+async function AssetConnection(contractAddress) {
   // console.log(process);
   if (typeof window.ethereum === "undefined") {
     console.log("Please install wallet.");
@@ -25,7 +25,7 @@ async function MarketPlaceConnection(contractAddress) {
     // const contractAddress = process.env.New_Contract_Address;
     // console.log(contractAddress);
 
-    const abi = process.env.MarketPlaceABI;
+    const abi = process.env.AssetABI;
     // console.log(abi);
 
     try {
@@ -41,4 +41,4 @@ async function MarketPlaceConnection(contractAddress) {
   }
 }
 
-export default MarketPlaceConnection;
+export default AssetConnection;
