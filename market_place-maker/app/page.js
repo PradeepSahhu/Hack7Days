@@ -91,7 +91,7 @@ export default function Home() {
     getDeployedMarketPlace();
     initWallet();
     // getDeployedMarketPlace();
-  });
+  }, []);
   return (
     <div className="bg-black font-myFont">
       <AdvancedNav />

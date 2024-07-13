@@ -5,8 +5,19 @@ import Search from "@/components/Search";
 import Link from "next/link";
 import Item from "@/components/Item";
 import Organization from "@/components/Organization";
+import { useEffect, useState } from "react";
+import ContractConnection from "@/Operations/Connection";
 
 export default function Home() {
+  const [name, setName] = useState();
+  const [perTokenAmount, setPerTokenAmount] = useState();
+
+  const addNewMarketPlace = async () => {
+    const contract = await ContractConnection();
+    await contract.registerMarketPlace(name, parseInt(perTokenAmount));
+    console.log(name, parseInt(perTokenAmount));
+  };
+  useEffect(() => {}, []);
   return (
     <div className="bg-black font-myFont">
       <AdvancedNav />
@@ -54,7 +65,11 @@ export default function Home() {
         </div>
       </div>
       <div>
-        <Organization />
+        <Organization
+          setName={setName}
+          setPerTokenAmount={setPerTokenAmount}
+          addNewMarketPlace={addNewMarketPlace}
+        />
       </div>
     </div>
   );
