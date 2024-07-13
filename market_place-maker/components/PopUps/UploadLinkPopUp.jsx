@@ -3,6 +3,7 @@ import { useRef } from "react";
 export default function UploadLinkPopUp({
   setShowHomePopUp,
   setShowUploadLink,
+  setUploadString,
   uploadLink,
 }) {
   const refElement = useRef();
@@ -43,11 +44,15 @@ export default function UploadLinkPopUp({
               </label>
               <input
                 className="text-white  p-5 rounded-md mx-5 my-2  border-yellow-400 border-2 bg-transparent focus:outline-none"
-                placeholder=""
+                placeholder="Enter the IPFS LINK OF YOUR JSON"
+                onChange={(e) => setUploadString(e.target.value)}
               />
             </form>
           </div>
-          <button className="px-10 py-5 bg-orange-600 rounded-lg mb-5">
+          <button
+            className="px-10 py-5 bg-orange-600 rounded-lg mb-5"
+            onClick={uploadLink}
+          >
             Submit
           </button>
 

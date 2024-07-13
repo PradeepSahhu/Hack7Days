@@ -34,6 +34,7 @@ export default function Home({ params }) {
   const [tokenAmount, setTokenAmount] = useState();
   const [weiFortoken, setWeiForToken] = useState();
   const [uploadString, setUploadString] = useState();
+  const [assetConnectionAddress, setAssetConnectionAddress] = useState();
 
   const BuyTokens = async () => {
     const contract = await MarketPlaceConnection(params.Marketplace);
@@ -42,7 +43,10 @@ export default function Home({ params }) {
   };
 
   const uploadLink = async () => {
-    const contract = await AssetConnection();
+    console.log(
+      "The address of asset Connection is : " + assetConnectionAddress
+    );
+    const contract = await AssetConnection(assetConnectionAddress);
     // await contract.addMintNFT(uploadString);
     console.log(uploadString);
   };
@@ -53,10 +57,18 @@ export default function Home({ params }) {
     setTokenAmount(parseInt(response));
   };
 
+  const getAssetConnectionAddress = async () => {
+    const contract = await MarketPlaceConnection(params.Marketplace);
+    const res = await contract.returnAsset();
+    console.log("The response address is : " + res);
+    setAssetConnectionAddress(res);
+  };
+
   useEffect(() => {
     console.log(params.Marketplace);
     showTokensAmount();
-  });
+    getAssetConnectionAddress();
+  }, []);
 
   return (
     <div className="bg-black font-myFont">
