@@ -1,13 +1,13 @@
 async function fetchMultipleData(urls, setFunc) {
   // Define the URLs to fetch data from
-  console.log("The urls are : " + urls);
-
-  // Use Promise.all to fetch all URLs concurrently
-  const fetchPromises = urls.map((url) =>
-    fetch(url).then((response) => response.json())
-  );
-
   try {
+    console.log("The urls are : " + urls);
+
+    // Use Promise.all to fetch all URLs concurrently
+    const fetchPromises = urls.map((url) =>
+      fetch(url).then((response) => response.json())
+    );
+
     // Wait for all fetch operations to complete
     const results = await Promise.all(fetchPromises);
 
@@ -28,4 +28,4 @@ async function fetchMultipleData(urls, setFunc) {
 }
 
 // Call the function to fetch data
-ex
+export default fetchMultipleData;

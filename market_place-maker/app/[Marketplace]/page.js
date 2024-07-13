@@ -37,6 +37,7 @@ export default function Home({ params }) {
   const [weiFortoken, setWeiForToken] = useState();
   const [uploadString, setUploadString] = useState();
   const [assetConnectionAddress, setAssetConnectionAddress] = useState();
+  const [owner, setOwner] = useState();
 
   //ipfs
   const [allIPFS, setAllIPFS] = useState();
@@ -70,10 +71,20 @@ export default function Home({ params }) {
     setCollections(data);
   };
 
+  const getOwner = async () => {
+    try {
+      const contract = await MarketPlaceConnection(params.Marketplace);
+      const res = contract.returnOwner();
+      setOwner(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const BuyTokens = async () => {
     try {
       const contract = await MarketPlaceConnection(params.Marketplace);
-      contract.buyTokens(parseInt(amountValue), {
+      await contract.buyTokens(parseInt(amountValue), {
         value: parseInt(weiFortoken),
       });
       // console.log(parseInt(amountValue));
@@ -153,6 +164,9 @@ export default function Home({ params }) {
   if (toMintIPFS == undefined) {
     fetchMultipleData(allIPFS, setFunc);
   }
+  if (owner == undefined) {
+    getOwner();
+  }
 
   if (collections == undefined) {
     fetchMultipleData(urls, setData);
@@ -187,7 +201,7 @@ export default function Home({ params }) {
               <p className="text-xl">
                 Owner ID:{" "}
                 <span className="text-yellow-400 ml-2">
-                  {params.Marketplace}
+                  {owner ? owner : "No Owner"}
                 </span>
               </p>
             </div>
