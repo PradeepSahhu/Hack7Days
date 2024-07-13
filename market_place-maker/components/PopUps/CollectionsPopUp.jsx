@@ -4,6 +4,7 @@ import DemoCard from "../Cards/DemoCard";
 export default function CollectionsPopUp({
   setShowHomePopUp,
   setShowCollectionsPopUp,
+  collections,
 }) {
   const refElement = useRef();
 
@@ -16,6 +17,11 @@ export default function CollectionsPopUp({
     if (refElement.current == e.target) {
       setShowCollectionsPopUp(false);
     }
+  };
+
+  const getImage = (ipfsURL) => {
+    const hash = ipfsURL.split("ipfs://")[1];
+    return `https://ipfs.io/ipfs/${hash}`;
   };
 
   return (
@@ -33,11 +39,20 @@ export default function CollectionsPopUp({
         <div className="bg-black  rounded-xl flex flex-col px-20 py-10 gap-5 items-center">
           <p className=" font-bold text-xl">Choose NFTs to Add</p>
           <div className="flex justify-between gap-x-5 p-5">
+            {/* <DemoCard />
             <DemoCard />
             <DemoCard />
             <DemoCard />
-            <DemoCard />
-            <DemoCard />
+            <DemoCard /> */}
+            {collections.slice(0, 5).map((collection, index) => (
+              <DemoCard
+                key={index}
+                itemName={collection.name}
+                itemSrc={getImage(collection.image)}
+                itemDescription={collection.description}
+                itemPrice={collection.price}
+              />
+            ))}
           </div>
 
           <div className="flex justify-center">

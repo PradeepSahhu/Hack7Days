@@ -42,49 +42,103 @@ export default function Home({ params }) {
   const [allIPFS, setAllIPFS] = useState();
   const [toMintIPFS, setToMintIPFS] = useState();
 
+  //collections.
+  const [collections, setCollections] = useState();
+
+  const urls = [
+    "https://ipfs.io/ipfs/QmP52JDE2gdL3Rc8E83aEmD7SUnhcb5Jjhoy5YoSx4TPRZ", //lambo
+    "https://ipfs.io/ipfs/QmcWWFLLWf4fUwHPbqhJJupvPXUW4p6iS3jUivKiG7H27B", //robot
+    "https://ipfs.io/ipfs/QmUASD1U57tGLnupqBoieZfeX2hHWdVEmFz5Hs3kcXeguT", // space city
+    "https://ipfs.io/ipfs/QmNqTfh67vgAMyrefF1UxZH3nj34VHtFx4FsxkLNUuwEXf", // space colony
+    "https://ipfs.io/ipfs/QmUKHAfQqRsNDdyAtgKkQtkk5atn7t9nuGSpaZ4wh4vcdh", // punk girl
+    "https://ipfs.io/ipfs/QmZsKUdF3mvhRbmXVPvC4Q6VGwmUiDTdXnLYSPtzt3VL7n", // girl cyber punk
+    "https://ipfs.io/ipfs/QmbHSggvkZRbHXp5CpXty2JCAxznpdfQhfRhhg53Z9nymK", //god of destruction
+    "https://ipfs.io/ipfs/QmY3ZPzoxw83GUFMU1VB669VWTCzDWv565TdNCqhGSpPg9", // destroied city
+    "https://ipfs.io/ipfs/QmRsaFFU9DAfpMPHAtBLiMdr8NYB7WzBUUX6xm1NmwFpEy", //Dark Dragon
+    "https://ipfs.io/ipfs/QmZ4fb2P13vuhAhQNUbS4Le8YDU2Cc1qPb2M7hTVG437fD", // lightning dragon
+    "https://ipfs.io/ipfs/QmcN77SAPZJJfkngZcDKM6A1dMyRxdMyoPTnvc7WcCi866", // space dragon
+    "https://ipfs.io/ipfs/QmU3jiyPfUcgjCB1KJMLeFNw6QnT2W3pGVszYaSAruvBHq", // Dwarf Forging
+    "https://ipfs.io/ipfs/QmR7PNvVyDSnGXDccTBUd9bPMj91aAcDTf3piK1XCkKoQa", // army of undead
+    "https://ipfs.io/ipfs/QmbwM9oRVGR9Xyd8DE59AHGrVJYGtRbkqxMEKEow9rT8vM", // army
+  ];
+
   const setFunc = async (data) => {
     setToMintIPFS(data);
     console.log("The data is : " + data[0].price);
   };
+  const setData = async (data) => {
+    setCollections(data);
+  };
 
   const BuyTokens = async () => {
-    const contract = await MarketPlaceConnection(params.Marketplace);
-    contract.buyTokens(parseInt(amountValue), { value: parseInt(weiFortoken) });
-    // console.log(parseInt(amountValue));
+    try {
+      const contract = await MarketPlaceConnection(params.Marketplace);
+      contract.buyTokens(parseInt(amountValue), {
+        value: parseInt(weiFortoken),
+      });
+      // console.log(parseInt(amountValue));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const toMintNFT = async (URI, price) => {
+    try {
+      const contract = await AssetConnection(params.Marketplace);
+      await contract.redeemTokens(URI, price);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const uploadLink = async () => {
-    // console.log(
-    //   "The address of asset Connection is : " + assetConnectionAddress
-    // );
-    const contract = await AssetConnection(assetConnectionAddress);
-    await contract.addMintNFT(uploadString);
-    console.log(uploadString);
+    try {
+      // console.log(
+      //   "The address of asset Connection is : " + assetConnectionAddress
+      // );
+      const contract = await AssetConnection(assetConnectionAddress);
+      await contract.addMintNFT(uploadString);
+      console.log(uploadString);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const showTokensAmount = async () => {
-    const contract = await MarketPlaceConnection(params.Marketplace);
-    const response = await contract.checkingBalance();
-    setTokenAmount(parseInt(response));
+    try {
+      const contract = await MarketPlaceConnection(params.Marketplace);
+      const response = await contract.checkingBalance();
+      setTokenAmount(parseInt(response));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getAssetConnectionAddress = async () => {
-    const contract = await MarketPlaceConnection(params.Marketplace);
-    const res = await contract.returnAsset();
-    console.log("The response address is : " + res);
-    setAssetConnectionAddress(res);
+    try {
+      const contract = await MarketPlaceConnection(params.Marketplace);
+      const res = await contract.returnAsset();
+      console.log("The response address is : " + res);
+      setAssetConnectionAddress(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getAllIPFS = async () => {
-    console.log(
-      "The address of asset Connection is : " + assetConnectionAddress
-    );
-    const contract = await AssetConnection(assetConnectionAddress);
-    console.log("The contract Instances are " + contract);
+    try {
+      console.log(
+        "The address of asset Connection is : " + assetConnectionAddress
+      );
+      const contract = await AssetConnection(assetConnectionAddress);
+      console.log("The contract Instances are " + contract);
 
-    const res = await contract.returnToMintNFT();
-    setAllIPFS(res);
-    console.log("Set all IPFS" + res);
+      const res = await contract.returnToMintNFT();
+      setAllIPFS(res);
+      console.log("Set all IPFS" + res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -98,6 +152,10 @@ export default function Home({ params }) {
   }
   if (toMintIPFS == undefined) {
     fetchMultipleData(allIPFS, setFunc);
+  }
+
+  if (collections == undefined) {
+    fetchMultipleData(urls, setData);
   }
   const getImage = (ipfsURL) => {
     const hash = ipfsURL.split("ipfs://")[1];
@@ -147,7 +205,10 @@ export default function Home({ params }) {
 
             <div className="my-2">
               <p className="text-xl">
-                NFT Available: <span className="text-yellow-400 ml-2">12</span>
+                NFT Available:{" "}
+                <span className="text-yellow-400 ml-2">
+                  {allIPFS ? allIPFS.length : "0xx"}
+                </span>
               </p>
             </div>
             <div className="my-2">
@@ -227,7 +288,6 @@ export default function Home({ params }) {
             </p>
           </div>
 
-          <Card />
           {toMintIPFS
             ? toMintIPFS.map((eachItem, index) => (
                 <Card
@@ -236,6 +296,8 @@ export default function Home({ params }) {
                   itemDescription={eachItem.description}
                   itemSrc={getImage(eachItem.image)}
                   itemPrice={eachItem.price}
+                  toMintNFT={toMintNFT}
+                  URI={toMintIPFS[index]}
                 />
               ))
             : ""}
@@ -259,6 +321,7 @@ export default function Home({ params }) {
             <CollectionsPopUp
               setShowHomePopUp={setShowHomePopUp}
               setShowCollectionsPopUp={setShowCollectionsPopUp}
+              collections={collections}
             />
           )}
           {showBuyToken && (

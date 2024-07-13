@@ -7,6 +7,7 @@ contract FactoryContract {
     struct InstanceInfo {
         string name;
         address instanceAddress;
+        address owner;
     }
 
     InstanceInfo[] private instances;
@@ -21,7 +22,8 @@ contract FactoryContract {
         );
         InstanceInfo memory instancesInfo = InstanceInfo(
             _name,
-            contractInstance
+            contractInstance,
+            msg.sender
         );
         instances.push(instancesInfo);
         inst.push(contractInstance);
@@ -31,7 +33,4 @@ contract FactoryContract {
         return instances;
     }
 
-    function totalRegistered() external view returns (uint) {
-        return instances.length;
-    }
-}
+    function totalRegistered() external view returns (ui

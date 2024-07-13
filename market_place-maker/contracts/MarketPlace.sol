@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "./Asset.sol";
 
 contract MarketPlace is ERC20 {
+    address public owner;
     Asset public immutable gameAsset;
     uint private _perAmount;
 
@@ -16,6 +17,7 @@ contract MarketPlace is ERC20 {
         gameAsset = new Asset();
         _perAmount = _perTokenAmount;
         _mint(_owner, _tokenToMint); // very small amount because it takes high gas fees
+        owner = _owner;
     }
 
     ///@notice to reward a certain user by _amount amount only callable by the owner.
@@ -34,12 +36,16 @@ contract MarketPlace is ERC20 {
         return address(gameAsset);
     }
 
+    function returnOwner() external view returns (address) {
+        return owner;
+    }
+
     // ///@notice redeeming  token for a NFT
-    // function redeemTokens(string memory _URI, uint _NftPrice) external {
-    //     require(balanceOf(msg.sender) >= _NftPrice);
-    //     _transfer(msg.sender, address(this), _NftPrice);
-    //     gameAsset.gameAssetMint(msg.sender, _URI);
-    // }
+    function redeemTokens(string memory _URI, uint _NftPrice) external {
+        require(balanceOf(msg.sender) >= _NftPrice);
+        _transfer(msg.sender, address(this), _NftPrice);
+        gameAsset.gameAssetMint(msg.sender, _URI);
+    }
 
     function buyTokens(uint _amount) external payable {
         uint totalPayableAmount = _amount * _perAmount;
@@ -63,9 +69,3 @@ contract MarketPlace is ERC20 {
 
     // function contractBalance() external view returns (uint) {
     //     return balanceOf(address(this));
-    // }
-
-    ///@notice to receive wei/ethers from external sources like other account
-
-    receive() external payable {}
-}

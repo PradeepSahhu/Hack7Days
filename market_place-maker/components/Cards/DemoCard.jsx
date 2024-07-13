@@ -3,7 +3,7 @@ export default function DemoCard({
   itemSrc,
   itemDescription,
   itemPrice,
-  mintNFTFunction,
+  addNFTFunction,
   URI,
 }) {
   const getTruncatedDescription = (description, wordLimit) => {

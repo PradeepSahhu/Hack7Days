@@ -3,7 +3,7 @@ export default function Card({
   itemSrc,
   itemDescription,
   itemPrice,
-  mintNFTFunction,
+  toMintNFT,
   URI,
 }) {
   return (
@@ -49,7 +49,7 @@ export default function Card({
             className="rounded-2xl  px-8 pb-2.5 pt-3 text-xs font-medium uppercase leading-normal text-white shadow-primary-3  bg-gradient-to-r from-red-600 to-blue-700 shadow-xl shadow-slate-900"
             data-twe-ripple-init
             data-twe-ripple-color="light"
-            onClick={() => mintNFTFunction(URI, itemPrice)}
+            onClick={() => toMintNFT(URI, itemPrice)}
           >
             Redeem NFT
           </button>

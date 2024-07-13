@@ -401,7 +401,51 @@ const nextConfig = {
       },
       {
         inputs: [],
+        name: "owner",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "string",
+            name: "_URI",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "_NftPrice",
+            type: "uint256",
+          },
+        ],
+        name: "redeemTokens",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
         name: "returnAsset",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "returnOwner",
         outputs: [
           {
             internalType: "address",
