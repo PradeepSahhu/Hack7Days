@@ -154,18 +154,25 @@ export default function AdvancedNav() {
 
             <div className="items-center flex gap-5">
               <div className="flex justify-center ">
-                <button className="  text-[16px] rounded-3xl px-1 py-0.5 bg-[#1679AB] border-1  text-black">
+                <button className="  text-[16px] rounded-3xl px-3 pt-2 pb-1 bg-[#1679AB] border-1  text-black">
                   Search
                 </button>
               </div>
               <div className="flex justify-center ">
-                <button className="  text-[16px] rounded-md px-1 py-0.5  bg-gray-600 text-white">
-                  Connect
+                <button className="  text-[16px] rounded-md px-3 py-2  bg-gray-600 text-white ">
+                  <a href="https://github.com/PradeepSahhu" target="_blank">
+                    Github Link
+                  </a>
                 </button>
               </div>
               <div className="flex justify-center ">
                 <button className="  text-[16px] rounded-md px-1 py-0.5 background-blue-800 border-1 bg-yellow-400 text-black">
-                  Disconnect
+                  <a
+                    href="https://www.linkedin.com/in/pradeepsahuu/"
+                    target="_blank"
+                  >
+                    LinkedIn Profile
+                  </a>
                 </button>
               </div>
             </div>

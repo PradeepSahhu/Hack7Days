@@ -187,8 +187,8 @@ export default function Search() {
                 </button>
               </div>
               <div className="flex justify-center ">
-                <button className="  text-[16px] rounded-md px-1 py-0.5  bg-gray-600 text-white">
-                  Connect
+                <button className=" text-[16px] rounded-md px-1 py-0.5  bg-gray-600 text-white">
+                  Options
                 </button>
               </div>
               <div className="flex justify-center ">
