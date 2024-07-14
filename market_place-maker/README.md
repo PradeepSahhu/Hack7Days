@@ -99,3 +99,28 @@
 ## How You can make your Own Link
 
 Go to pinata website and upload your image there.
+
+Copy its IPFS Hash and make a JSON.
+
+### JSON Format
+
+```JS
+
+{
+    "name":"Name You want to give",
+    "description":"your description",
+    "image":"ipfs:// image ipfs",
+    "price": price of NFTT
+}
+```
+
+## Example
+
+```JS
+{
+  "name": "Space Colony",
+  "description": "After a century of aliends attack ,Humans established a colony in space",
+  "image": "ipfs://QmVXsaYDrBa2yUKxyifA9xKDicnEhMNGCuB8dxT4Y3nwk9",
+  "price": 10
+}
+```
