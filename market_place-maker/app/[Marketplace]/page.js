@@ -346,4 +346,7 @@ export default function Home({ params }) {
             <TransferTokenPopUp setShowTransferToken={setShowTransferToken} />
           )}
         </div>
-   
+      </div>
+    </div>
+  );
+}
