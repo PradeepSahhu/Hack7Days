@@ -92,6 +92,7 @@ export default function Home({ params }) {
     try {
       const contract = await MarketPlaceConnection(params.Marketplace);
       await contract.redeemTokens(URI, price);
+      console.log(URI, price);
     } catch (error) {
       console.log(error);
     }
@@ -306,7 +307,7 @@ export default function Home({ params }) {
                   itemSrc={getImage(eachItem.image)}
                   itemPrice={eachItem.price}
                   toMintNFT={toMintNFT}
-                  URI={toMintIPFS[index]}
+                  URI={allIPFS[index]}
                 />
               ))
             : ""}
@@ -345,7 +346,4 @@ export default function Home({ params }) {
             <TransferTokenPopUp setShowTransferToken={setShowTransferToken} />
           )}
         </div>
-      </div>
-    </div>
-  );
-}
+   
