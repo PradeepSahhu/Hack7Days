@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-async function ContractConnection() {
+async function Network() {
   console.log(process);
   if (typeof window.ethereum === "undefined") {
     console.log("Please install wallet.");
@@ -10,6 +10,15 @@ async function ContractConnection() {
     return;
   } else {
     // raise a request for the provider to connect the account to our website
+    // const web3ModalVar = new Web3Modal({
+    //   cacheProvider: true,
+    //   providerOptions: {
+    //     walletconnect: {
+    //       package: WalletConnectProvider,
+    //     },
+    //   },
+    // });
+
     const web3ModalVar = new Web3Modal({
       cacheProvider: true,
       providerOptions: {
@@ -19,39 +28,26 @@ async function ContractConnection() {
       },
     });
 
-    // const web3ModalVar = new Web3Modal({
-    //   cacheProvider: true,
-    //   providerOptions: {
-    //     walletconnect: {
-    //       package: WalletConnectProvider,
-    //       options: {
-    //         rpc: {
-    //           128123: "https://node.ghostnet.etherlink.com", // Chain ID 128123 with the given RPC URL
-    //         },
-    //         chainId: 128123, // Specify the chain ID
-    //       },
-    //     },
-    //   },
-    // });
-
     const instanceVar = await web3ModalVar.connect();
     const providerVar = new ethers.providers.Web3Provider(instanceVar);
 
-    // const contractAddress = "0xf240FcA7176BE7BAB713908eb55aDaA9Fc3a114e";
-    const contractAddress = "0x6a84c8d68A5cEaadF2d88bC2D566C3dA7cd1F047";
-    console.log(contractAddress);
-    console.log(instanceVar);
-
-    const abi = process.env.FactoryABI;
-    console.log(abi);
-
     try {
-      const signer = providerVar.getSigner();
-      const smartContract = new ethers.Contract(contractAddress, abi, signer);
+      //     const chainIdBigInt = (await provider.getNetwork()).chainId; //
+      // const chainId = Number(chainIdBigInt);
+      // console.log(chainId);
 
-      const newSmartContract = smartContract.connect(signer);
-      console.log("The signer is : " + providerVar);
-      return newSmartContract;
+      const chainIdBigInt = (await providerVar.getNetwork()).chainId;
+      const chainId = Number(chainIdBigInt);
+      console.log("The chain id is : " + chainId);
+
+      return chainId;
+
+      //   const signer = providerVar.getSigner();
+      //   const smartContract = new ethers.Contract(contractAddress, abi, signer);
+
+      //   const newSmartContract = smartContract.connect(signer);
+      //   console.log("The signer is : " + providerVar);
+      //   return newSmartContract;
       // const response = await contractWithSigner.readNum();
       // console.log(response);
 
@@ -62,8 +58,9 @@ async function ContractConnection() {
     } catch (error) {
       console.log("Their is some error");
       console.log(error);
+      return 0;
     }
   }
 }
 
-export default ContractConnection;
+export default Network;

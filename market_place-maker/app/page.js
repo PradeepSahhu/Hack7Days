@@ -12,12 +12,28 @@ import ContractConnection from "@/Operations/Connection";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { useEffect, useState } from "react";
+import ChangeNetworkPopUp from "@/components/PopUps/ChangeNetwork";
+
+import Network from "@/Operations/Network";
 
 export default function Home() {
   const [registered, setRegistered] = useState();
   const [provider, setProvider] = useState();
   const [connectedAccount, setConnectedAccount] = useState();
   const [registeredMarketPlace, setRegisteredMarketPlace] = useState();
+  const [showChangeNetwork, setShowChangeNetwork] = useState(false);
+  const [showChainId, setShowChainID] = useState();
+
+  const checkNetwork = async () => {
+    const chainId = await Network();
+    console.log("The returned Chain id  is : " + chainId);
+    console.log(typeof chainId);
+    setShowChainID(chainId);
+    if (chainId != Number(128123)) {
+      console.log("This is showing change the network");
+      setShowChangeNetwork(true);
+    }
+  };
 
   const handleAccount = async () => {
     initWallet();
@@ -87,9 +103,14 @@ export default function Home() {
     setRegisteredMarketPlace(res);
   };
 
+  if (showChainId == undefined) {
+    checkNetwork();
+  }
+
   useEffect(() => {
     getDeployedMarketPlace();
     initWallet();
+    // checkNetwork();
     // getDeployedMarketPlace();
   }, []);
   return (
@@ -199,6 +220,11 @@ export default function Home() {
                   : ""}
               </div>
             </div>
+
+            {showChangeNetwork && (
+              <ChangeNetworkPopUp setShowChangeNetwork={setShowChangeNetwork} />
+            )}
+
             <div className="flex justify-between gap-x-5 grid-cols-3">
               <Animation
                 url={
@@ -211,6 +237,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <div className="text-white text-xl font-bold flex justify-center relative">
         <p>Copy right 2024 Pradeep Sahu</p>
       </div>
