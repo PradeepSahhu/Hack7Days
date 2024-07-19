@@ -84,4 +84,10 @@ export default function BoughtNFT({ params }) {
           setShowZoomCard={setShowZoomCard}
           itemSrc={mintedNFT[zoomIndex].image}
           itemDescription={mintedNFT[zoomIndex].description}
-          itemPrice={mi
+          itemPrice={mintedNFT[zoomIndex].price}
+          itemName={mintedNFT[zoomIndex].name}
+        />
+      )}
+    </div>
+  );
+}
