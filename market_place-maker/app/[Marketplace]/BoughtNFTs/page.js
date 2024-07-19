@@ -22,7 +22,7 @@ export default function BoughtNFT({ params }) {
       const result = await IpfsToArray(res);
 
       setMintedNft(result);
-      console.log("The result is : " + result[0].image);
+      console.log("The result is : " + result.length);
     } catch (error) {
       console.log(error);
     }
@@ -59,39 +59,29 @@ export default function BoughtNFT({ params }) {
           </p>
         </div>
 
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        {/* <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} />
-        <BoughtCard setShowZoomCard={setShowZoomCard} /> */}
-        {mintedNFT != undefined
-          ? mintedNFT.map((eachNFT, index) => (
-              <BoughtCard
-                key={index}
-                setShowZoomCard={setShowZoomCard}
-                itemName={eachNFT.name}
-                itemDescription={eachNFT.description}
-                itemSrc={getImage(eachNFT.image)}
-                itemPrice={eachNFT.price}
-                // onClick={() => setZoomIndex(index)}
-                index={index}
-                setZoomIndex={setZoomIndex}
-              />
-            ))
-          : ""}
+        {mintedNFT != undefined && mintedNFT.length != 0 ? (
+          mintedNFT.map((eachNFT, index) => (
+            <BoughtCard
+              key={index}
+              setShowZoomCard={setShowZoomCard}
+              itemName={eachNFT.name}
+              itemDescription={eachNFT.description}
+              itemSrc={getImage(eachNFT.image)}
+              itemPrice={eachNFT.price}
+              // onClick={() => setZoomIndex(index)}
+              index={index}
+              setZoomIndex={setZoomIndex}
+            />
+          ))
+        ) : (
+          <div className="text-yellow-400 text-center flex text-[16rem]">
+            No Bought NFT
+          </div>
+        )}
       </div>
       {showZoomCard && (
         <ZoomCard
           setShowZoomCard={setShowZoomCard}
           itemSrc={mintedNFT[zoomIndex].image}
           itemDescription={mintedNFT[zoomIndex].description}
-          itemPrice={mintedNFT[zoomIndex].price}
-          itemName={mintedNFT[zoomIndex].name}
-        />
-      )}
-    </div>
-  );
-}
+          itemPrice={mi

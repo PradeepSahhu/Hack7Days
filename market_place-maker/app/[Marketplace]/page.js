@@ -311,7 +311,9 @@ export default function Home({ params }) {
                 />
               ))
             : ""}
+
           <BlankCard setShowHomePopUp={setShowHomePopUp} />
+
           {showHomePopUp && (
             <HomePopup
               setShowHomePopUp={setShowHomePopUp}
