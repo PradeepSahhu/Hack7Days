@@ -11,6 +11,7 @@ import IpfsToArray from "@/Connections/Functionality/realPFS";
 export default function BoughtNFT({ params }) {
   const [showZoomCard, setShowZoomCard] = useState(false);
   const [mintedNFT, setMintedNft] = useState();
+  const [zoomIndex, setZoomIndex] = useState(0);
 
   const alreadyBought = async () => {
     try {
@@ -21,7 +22,7 @@ export default function BoughtNFT({ params }) {
       const result = await IpfsToArray(res);
 
       setMintedNft(result);
-      console.log(result);
+      console.log("The result is : " + result[0].image);
     } catch (error) {
       console.log(error);
     }
@@ -75,11 +76,22 @@ export default function BoughtNFT({ params }) {
                 itemDescription={eachNFT.description}
                 itemSrc={getImage(eachNFT.image)}
                 itemPrice={eachNFT.price}
+                // onClick={() => setZoomIndex(index)}
+                index={index}
+                setZoomIndex={setZoomIndex}
               />
             ))
           : ""}
       </div>
-      {showZoomCard && <ZoomCard setShowZoomCard={setShowZoomCard} />}
+      {showZoomCard && (
+        <ZoomCard
+          setShowZoomCard={setShowZoomCard}
+          itemSrc={mintedNFT[zoomIndex].image}
+          itemDescription={mintedNFT[zoomIndex].description}
+          itemPrice={mintedNFT[zoomIndex].price}
+          itemName={mintedNFT[zoomIndex].name}
+        />
+      )}
     </div>
   );
 }

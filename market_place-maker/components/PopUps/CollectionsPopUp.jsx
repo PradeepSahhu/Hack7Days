@@ -5,8 +5,12 @@ export default function CollectionsPopUp({
   setShowHomePopUp,
   setShowCollectionsPopUp,
   collections,
+  addtheNFT
 }) {
   const refElement = useRef();
+
+
+  
 
   const handleCollections = () => {
     setShowCollectionsPopUp(false);
@@ -47,6 +51,7 @@ export default function CollectionsPopUp({
             {collections.slice(0, 5).map((collection, index) => (
               <DemoCard
                 key={index}
+                onClick={()=>addtheNFT()}
                 itemName={collection.name}
                 itemSrc={getImage(collection.image)}
                 itemDescription={collection.description}

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function BoughtCard({
   itemName,
@@ -7,11 +8,18 @@ export default function BoughtCard({
   itemDescription,
   itemPrice,
   setShowZoomCard,
+  index,
+  setZoomIndex,
 }) {
+  const handleclick = () => {
+    setShowZoomCard(true);
+    setZoomIndex(index);
+  };
+
   return (
     <div
       className="relative inline-block w-52 group"
-      onClick={() => setShowZoomCard(true)}
+      onClick={() => handleclick()}
     >
       {/* //w-96 */}
       <div className="absolute bg-gradient-to-r from-pink-600 to-purple-600 blur-sm -inset-0.5 opacity-75 group-hover:opacity-100 transition duration-200 group-hover:blur-md"></div>

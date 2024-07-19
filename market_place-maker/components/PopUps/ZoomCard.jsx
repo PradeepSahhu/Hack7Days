@@ -13,6 +13,11 @@ export default function ZoomCard({
 }) {
   const refElement = useRef();
 
+  const getImage = (ipfsURL) => {
+    const hash = ipfsURL.split("ipfs://")[1];
+    return `https://ipfs.io/ipfs/${hash}`;
+  };
+
   const refereceModal = (e) => {
     if (refElement.current == e.target) {
       setShowZoomCard(false);
@@ -43,7 +48,7 @@ export default function ZoomCard({
                 className="w-full h-full object-cover rounded-t-lg"
                 src={
                   itemSrc
-                    ? itemSrc
+                    ? getImage(itemSrc)
                     : "https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg"
                 }
                 alt=""
